@@ -374,7 +374,7 @@ app.post('/secure/save_urls', function(req, res){
             console.log("Data updated successfully");
             return res.json({
                 success: true,
-                redirect: redirect,
+                redirect: 'dashboard',
             }).end();
         });
         // setTimeout(saveSignup, 3000);
