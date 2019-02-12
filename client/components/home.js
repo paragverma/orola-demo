@@ -4,22 +4,16 @@ angular.module('app').component('home', {
   controller:function($scope, $mdDialog, $mdToast, $location, $log) {
     $scope.dataArray = [
       {
-        src: 'https://www.travelexcellence.com/images/movil/La_Paz_Waterfall.jpg'
+        src: 'https://s3.us-east-2.amazonaws.com/orola-carousel-pics/bigstock-african-doctor-7942823.jpg'
       },
       {
-        src: 'http://www.parasholidays.in/blog/wp-content/uploads/2014/05/holiday-tour-packages-for-usa.jpg'
+        src: 'https://s3.us-east-2.amazonaws.com/orola-carousel-pics/doctors.jpg'
       },
       {
-        src: 'http://clickker.in/wp-content/uploads/2016/03/new-zealand-fy-8-1-Copy.jpg'
+        src: 'https://s3.us-east-2.amazonaws.com/orola-carousel-pics/how-to-find-a-doctor-in-croatia.jpg'
       },
       {
-        src: 'http://images.kuoni.co.uk/73/indonesia-34834203-1451484722-ImageGalleryLightbox.jpg'
-      },
-      {
-        src: 'http://images.kuoni.co.uk/73/malaysia-21747826-1446726337-ImageGalleryLightbox.jpg'
-      },
-      {
-        src: 'https://www.travcoa.com/sites/default/files/styles/flexslider_full/public/tours/images/imperialvietnam-halong-bay-14214576.jpg?itok=O-q1yr5_'
+        src: 'https://s3.us-east-2.amazonaws.com/orola-carousel-pics/image1.jpg'
       }
     ];
     
