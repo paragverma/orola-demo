@@ -17,6 +17,7 @@ angular.module('app').component('home', {
       }
     ];
     
+	$scope.display_doctors = [{"name": "John Doe", "pic": "med-team-1.jpg" },{"name": "Raju Srivatsan", "pic": "med-team-2.jpg" },{"name": "David Wilson", "pic": "med-team-3.jpg" }];
     $scope.speciality="";
     $scope.location="";
 

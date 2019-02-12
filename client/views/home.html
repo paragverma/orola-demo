@@ -117,16 +117,16 @@
     <h1 layout="row" flex="100" layout-align="center center">Reviews</h1>
     <md-content class="md-padding"  layout="row" layout-xs="column" layout-sm="column" layout-align="center center" >
 
-    <div flex-xs flex-gt-md="20" flex="100" layout="row" ng-repeat="item1 in [1, 2 ,3]">
+    <div flex-xs flex-gt-md="20" flex="100" layout="row" ng-repeat="doctor in display_doctors">
      <md-card >
         <md-card-header style="height:100px; width:100px; margin: auto;">
             <md-card-avatar style="height: 100px; width: inherit;">
-               <img class="md-user-avatar" src="/img/med-team-3.jpg">
+               <img class="md-user-avatar" src="/img/med-team-{{doctor.pic}}.jpg">
             </md-card-avatar>
         </md-card-header>
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">JOHN DOE</span>
+            <span class="md-headline">{{doctor.name}}</span>
           </md-card-title-text>
           
         </md-card-title>
