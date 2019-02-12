@@ -14,9 +14,9 @@
         </jk-carousel>
     </md-card>
         <!--search inputs-->
-    <div class="overlay" layout="row" flex="50">
+    <div class="overlay" layout="row" flex="100" layout-xs="column" layout-sm="column" layout-align="center center" layout-align-xs="space-around">
             
-			<div class="device-wrapper deviceLeft">
+			<div class="device-wrapper deviceLeft" flex="80">
 				<div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="white">
 					<div class="screen">
 						<!-- PUT CONTENTS HERE -->
@@ -27,21 +27,54 @@
 					</div>
 				</div>
 			</div>
-
-    </div>
+			
+			<md-autocomplete
+                  class="box"
+                  flex-xs="10"
+                  flex-sm="10"
+                  flex="10"
+                  md-search-text-change="$ctrl.searchTextChange(speciality)"
+                  md-search-text="speciality"
+                  md-selected-item-change="$ctrl.selectedItemChange(item)"
+                  md-items="item in $ctrl.querySearch(speciality)"
+                  md-item-text="item.display"
+                  md-min-length="0"
+                  placeholder="Search doctors in your city :)">
+                  <md-icon>location on</md-icon>
+                <md-item-template>
+                  <span md-highlight-text="speciality" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{$ctrl.searchText}}" were found.
+                  <a ng-click="$ctrl.newState($ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+              </md-autocomplete>
+              <md-autocomplete
+                  class="box"
+                  flex-xs="10"
+                  flex-sm="10"
+                  flex="10"
+                  md-search-text-change="$ctrl.searchTextChange(location)"
+                  md-search-text="location"
+                  md-selected-item-change="$ctrl.selectedItemChange(item)"
+                  md-items="item in $ctrl.querySearch(location)"
+                  md-item-text="item.display"
+                  md-min-length="0"
+                  placeholder="which location in your city :)">
+                <md-item-template>
+                  <span md-highlight-text="location" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{$ctrl.searchText}}" were found.
+                  <a ng-click="$ctrl.newState($ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+              </md-autocomplete>
+              <md-button class="md-icon-button md-primary" ng-click="search()">
+                  <md-icon >search</md-icon>
+              </md-button>
+              </div>
 <!--end of search inputs-->
             <div class="lock-size" layout="row" layout-align="center center" style="position: absolute; bottom: 0%; left: 5%;">
-				<div class="device-wrapper deviceLeft">
-					<div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="white">
-						<div class="screen">
-							<!-- PUT CONTENTS HERE -->
-							<p>Content</p>
-						</div>
-						<div class="button" data-toggle="popover" data-placement="bottom" data-content="Device buttons are perfectly rendered and can be hooked to links or JavaScript events" data-original-title="" title="">
-							<!-- You can hook the "home button" to some JavaScript events or just remove it -->
-						</div>
-					</div>
-				</div>
               <md-fab-speed-dial md-open="$ctrl.isOpen" 
                                 md-direction="{{$ctrl.selectedDirection}}"
                                 ng-class="$ctrl.selectedMode">
