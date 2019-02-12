@@ -1,0 +1,380 @@
+<html>
+  <head >
+
+
+    <base href="/">
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,400,500,700,400italic">-->
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+    <!--for icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+
+    <!--for general-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js "></script>
+    <script src="https://npmcdn.com/angular-ui-router@1.0.0-alpha.4/release/angular-ui-router.js"></script>
+    <link rel="stylesheet" href="/css/jk-carousel.min.css" />
+    <script src="/js/jk-carousel.min.js"></script>
+    <!--for md-data-table -->
+    <script src="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
+    <!--for location-->
+    <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+    <!--for maps-->
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js'></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk&libraries=places'></script>
+
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/gilf/ngPrint/master/ngPrint.min.css" />
+    <script src="https://rawgit.com/gilf/ngPrint/master/ngPrint.min.js"></script>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+    <!--for home-->
+
+        <!--<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js'></script>-->
+    <!--<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js'></script>-->
+    <!---->
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+
+    <!--for input file type-->
+    <link rel="stylesheet" href="/css/lf-ng-md-file-input.min.css">
+    <!--for data table-->
+    <link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+
+
+    <!--<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'>-->
+
+    <!---->
+
+
+   
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'>
+    </script>
+
+    <!--  Orola Source code -->
+    <script src="/app.js"></script>
+    <script src="/components/home.js"></script>
+    <script src="/components/login.js"></script>
+    <script src="/components/logout.js"></script>
+    <script src="/components/signup.js"></script>
+    <script src="/components/signup2.js"></script>
+    <script src="/components/page2.js"></script>
+    <script src="/components/page3.js"></script>
+    <script src="/components/page4.js"></script>
+    <script src="/components/page5.js"></script>
+    <script src="/components/page6.js"></script>
+    <script src="/components/page7.js"></script>
+    <script src="/components/page8.js"></script>
+    <script src="/components/page9.js"></script>
+    <script src="/components/page10.js"></script>    
+    <script src="/components/dashboard.js"></script>
+    <!--<script src="./client/loginService.js"></script>-->
+    <script src="/js/lf-ng-md-file-input.js"></script>
+
+    <script src="/components/doctor_restricted.js"></script>
+
+    <!-- Visualizer and url -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://npmcdn.com/d3@3"></script>
+    <script src="https://npmcdn.com/ui-router-visualizer@1"></script>
+        <style>
+            
+    body {
+        background-image: url("/img/material-background.jpg");
+        height: auto;
+        -moz-background-size:cover;
+        -webkit-background-size: cover; 
+        -o-background-size: cover;
+        background-size: cover !important;  
+    }
+    html{
+               background-image: url("/img/material-background.jpg");
+        height: auto;
+        -moz-background-size:cover;
+        -webkit-background-size: cover; 
+        -o-background-size: cover;
+        background-size: cover; 
+            }
+    .slide img {
+        width: 100%;
+        height: 740px;
+    }
+    
+.slider {
+  height: 740px;
+}
+#map { 
+    height: 400px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+.flex-main md-card {
+    -webkit-flex: 1 1 100%;
+    -ms-flex: 1 1 100%;
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: 740px;
+    max-height: 100%;
+    box-sizing: border-box;
+
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/*added*/
+li a:hover {
+      color: #fff;
+      cursor: pointer;
+}
+.wrapper {
+    position: relative;
+    width: 100%;
+
+}
+.wrapper .overlay {
+      position: absolute;
+      top: 40%;
+      left: 42%;
+      z-index: 100;
+    }
+    .spacer {
+        font-size: 16px;
+    }
+    li {
+        list-style: none;
+    }
+    li a {
+    color: #039be5;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    }
+    .section {
+        margin: 70px 0 70px 0
+    }
+    .title {
+        padding: 16px;
+    }
+    .home-page {
+        background: white;
+    }
+    ui-view.ng-enter {
+        transition: 0.5s linear all;
+        opacity:0;
+    }
+
+    /* The finishing CSS styles for the enter animation */
+    ui-view.ng-enter.ng-enter-active {
+        opacity:1;
+    }
+    #slide-left .inner.ng-enter {
+        transition: 0.5s linear all;
+        opacity:0;
+        transform: translateY(30px);
+    }
+    #slide-left .inner.ng-enter.ng-enter-active {
+        opacity:1;
+        transform: translateY(0px);
+    }
+    #slide-left .inner.ng-leave {
+        transition: 0.5s linear all;
+        opacity:1;
+        transform: translateY(0);
+    }
+    #slide-left .inner.ng-leave.ng-enter-leave {
+        opacity:0;
+        transform: translateY(-100%);
+    }
+    .column-2 {
+        width:75%; 
+        /*margin-left:100px;;*/
+        padding-left:7%;
+    }
+    .column-2 label {
+        margin-left: 5%;
+    }
+    .column li {
+        margin-right:10%;
+        display: inline-block;
+    }
+    @media (max-width: 1627px) {
+	.column-2 {
+        /*background: pink;*/
+        /*width:100%;*/
+        padding-left:5%;
+        /*margin-left: 8%;*/
+    }
+    .column-2 li {
+        margin: auto;
+        width: 90%;
+        /*background: blue;*/
+    }
+}
+@media (max-width: 1189px) {
+	.column-2 {
+        /*background: red;*/
+        width:100%;
+        padding-left:5%;        
+        /*margin-left: 8%;*/
+    }
+    .column-2 li {
+        margin-left:15%;
+        margin-right:20%;
+        width: 100%;
+        /*background: blue;*/
+    }
+    .column-2 label {
+        margin-left: 20%;
+    }
+}
+    a:hover {
+ cursor:pointer;
+}
+    </style>
+  </head>
+
+  <body ng-app="app">
+
+    <header style="margin-bottom: 64px;">
+      <md-toolbar class="md-hue-2" style="position:fixed; top:0; left:0; z-index:1000;">
+              <div class="md-toolbar-tools">
+
+<div ng-controller="MyCtrl" ng-hide="true">{{loggedIn}}</div>
+                  <h2 layout-align="center center"><span>Orola</span></h2>
+
+                  <span flex></span>
+                  <a ui-sref="signup"  ng-if="!loggedIn">
+                  <md-button aria-label="Signup">
+                      Signup
+                  </md-button>
+                </a>
+
+                <a ui-sref="login" ng-if="!loggedIn">
+                  <md-button aria-label="Login">
+                      Login
+                  </md-button>
+                </a>
+                <a ui-sref="dashboard" ng-if="loggedIn">
+                  <md-button aria-label="dashboard">
+                      Dashboard
+                  </md-button>
+                </a>
+                <a ui-sref="logout" ng-if="loggedIn">
+                  <md-button aria-label="Logout">
+                      Logout
+                  </md-button>
+                </a>
+                
+               <!--<a ui-sref="signup2" >
+                  <md-button aria-label="Signup2">
+                      Signup2
+                  </md-button>
+                </a>
+
+
+                <a ui-sref="page2">
+                  <md-button aria-label="page2">
+                      page 2
+                  </md-button>
+                </a>
+
+                <a ui-sref="page3">
+                  <md-button aria-label="page3">
+                      page 3
+                  </md-button>
+                </a>
+<a ui-sref="page4">
+                  <md-button aria-label="page2">
+                      page 4
+                  </md-button>
+                </a>
+<a ui-sref="page5">
+                  <md-button aria-label="page2">
+                      page 5
+                  </md-button>
+                </a>
+<a ui-sref="page6">
+                  <md-button aria-label="page2">
+                      page 6
+                  </md-button>
+                </a>
+<a ui-sref="page7">
+                  <md-button aria-label="page2">
+                      page 7
+                  </md-button>
+                </a>
+<a ui-sref="page8">
+                  <md-button aria-label="page2">
+                      page 8
+                  </md-button>
+                </a>-->
+<!--<a ui-sref="page9">
+                  <md-button aria-label="page2">
+                      page 9
+                  </md-button>
+                </a>-->
+                <!--<a ui-sref="dashboard">
+                  <md-button aria-label="page2">
+                      dashboard
+                  </md-button>
+                </a>
+
+<a ui-sref="home">
+                  <md-button aria-label="page2">
+                      home
+                  </md-button>
+                </a>
+              
+              <a ui-sref="page10">
+                  <md-button aria-label="page10">
+                      page 2
+                  </md-button>
+                </a>-->
+              </div>
+          </md-toolbar>
+  </header>
+    <ui-view></ui-view>
+
+  </body>
+</html>
