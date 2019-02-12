@@ -129,6 +129,7 @@ angular.module('app').component('home', {
       this.selectedMode = 'md-fling';
       this.selectedDirection = 'right';
       // end of fab button
+	
   }
 });
 
