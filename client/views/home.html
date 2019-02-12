@@ -1,0 +1,216 @@
+<div class="home-page">
+    <div class="wrapper">
+    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px" >
+      <!--<h3>AutoSlide Carousel</h3>-->
+      <jk-carousel
+	
+        data="dataArray"
+        item-template-url="'item-template.html'"
+        max-width="1920"
+        max-height="700"
+        auto-slide="true"
+        auto-slide-time="2000" 
+	
+        </jk-carousel>
+    </md-card>
+        <!--search inputs-->
+    <div class="overlay" layout="row" flex="50">
+            
+			<div class="device-wrapper deviceLeft">
+				<div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="white">
+					<div class="screen">
+						<!-- PUT CONTENTS HERE -->
+						<p>Content</p>
+					</div>
+					<div class="button" data-toggle="popover" data-placement="bottom" data-content="Device buttons are perfectly rendered and can be hooked to links or JavaScript events" data-original-title="" title="">
+						<!-- You can hook the "home button" to some JavaScript events or just remove it -->
+					</div>
+				</div>
+			</div>
+
+    </div>
+<!--end of search inputs-->
+            <div class="lock-size" layout="row" layout-align="center center" style="position: absolute; bottom: 0%; left: 5%;">
+              <md-fab-speed-dial md-open="$ctrl.isOpen" 
+                                md-direction="{{$ctrl.selectedDirection}}"
+                                ng-class="$ctrl.selectedMode">
+                <md-fab-trigger>
+                  <md-button aria-label="menu" class="md-fab md-primary">
+                    <md-tooltip md-direction="top" md-visible="tooltipVisible">Patients Feedback</md-tooltip>
+                    <md-icon md-svg-src="/img/feedback.svg"></md-icon>
+                  </md-button>
+                </md-fab-trigger>
+
+                <md-fab-actions>
+                  <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="/img/twitter-box.svg" aria-label="Twitter"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="/img/facebook-box.svg" aria-label="Facebook"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="/img/hangouts.svg" aria-label="Google Hangout"></md-icon>
+                  </md-button>
+                </md-fab-actions>
+              </md-fab-speed-dial>
+            </div>
+<!--end of fab button-->
+
+    </div>
+    <!--section specialities-->
+<div class="section">
+	<div class="device-wrapper deviceLeft">
+		<div class="device" data-device="iPhoneSE" data-orientation="portrait" data-color="white">
+			<div class="screen">
+				<!-- PUT CONTENTS HERE -->
+				<p>Content</p>
+			</div>
+			<div class="button" data-toggle="popover" data-placement="bottom" data-content="Device buttons are perfectly rendered and can be hooked to links or JavaScript events" data-original-title="" title="">
+				<!-- You can hook the "home button" to some JavaScript events or just remove it -->
+			</div>
+		</div>
+	</div>
+    <md-content class="md-padding" >    
+      <h1 layout="row" layout-align="center center">Specialities</h1>      
+              
+            <div flex="100" layout="row" layout-xs="column" layout-sm="column" layout-align="center center" layout-align-xs="center stretch">
+              
+              <md-menu ng-repeat="item1 in [ 'Radiologist', 'Gynaecologist', 'Dermatologist', 'Psychiatrist', 'Orthopediatrist' ]">
+
+				  <md-button aria-label="Open menu with custom trigger" class="md-primary md-raised" ng-click="$ctrl.openMenu($mdOpenMenu, $event)" flex-xs="100">
+					  {{item1}}<md-icon>add</md-icon>
+				  </md-button>
+				  <md-menu-content width="4" flex="100">
+					  <md-menu-item ng-repeat="item in [1, 2, 3]">
+					  <md-button>
+						  Option {{item}}
+					  </md-button>
+					  </md-menu-item>
+				  </md-menu-content>
+              </md-menu>
+            </div>
+    </md-content>
+</div>
+<!--end of section specialities-->
+<!--section customer reviews-->
+<div class="section">
+    <h1 layout="row" flex="100" layout-align="center center">Reviews</h1>
+    <md-content class="md-padding"  layout="row" layout-xs="column" layout-sm="column" layout-align="center center" >
+
+    <div flex-xs flex-gt-md="20" flex="100" layout="row" ng-repeat="doctor in display_doctors">
+     <md-card >
+        <md-card-header style="height:100px; width:100px; margin: auto;">
+            <md-card-avatar style="height: 100px; width: inherit;">
+               <img class="md-user-avatar" src="/img/{{doctor.pic}}">
+            </md-card-avatar>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{doctor.name}}</span>
+          </md-card-title-text>
+          
+        </md-card-title>
+        <md-card-content>
+          
+          <p>
+            <md-icon md-svg-src="/img/ic_format_quote_black_24px.svg" class="md-primary"></md-icon>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="center center">
+          <md-card-icon-actions layout-align="center center" >
+            <md-button 
+            style="padding:0; margin:0; max-width: 22px;" 
+            class="md-icon-button" aria-label="Favorite" 
+            ng-repeat="item in [1, 2 ,3, 4, 5]"
+            ng-class="{'md-warn':hovering}"
+            
+            ng-mouseover="hovering=true"
+            ng-mouseenter="hovering=true"
+            ng-mouseleave="hovering=false">
+              <md-icon>star</md-icon>
+            </md-button>
+            
+          </md-card-icon-actions>
+        </md-card-actions>
+
+      </md-card>
+    </div>
+    </md-content>
+</div>
+<!--end of section customer reviews-->
+
+<!--section partners-->
+<div class="section">
+    <span><h1 layout="row" flex="100" layout-align="center center">Partnership</h1></span>
+    <md-content class="md-padding" >
+      
+      <div flex="100" layout-xs="column" layout-sm="column" layout="column" layout-align="space-between center">
+        <div flex-xs flex-gt-md="20" layout-xs="column" layout-sm="column" layout="row" layout-align="space-between center" ng-repeat="item1 in [1, 2 ,3]">
+        <md-card>
+          <img src="/img/images.png">
+        </md-card>
+        <md-card>
+          <img src="/img/images.png">
+        </md-card>
+        <md-card>
+          <img src="/img/images.png">
+        </md-card>
+        </div>
+      </div>
+    
+    
+    </md-content>
+</div>
+<!--end of section partners-->
+<!--Footer-->
+<div >
+    
+    <md-content class="md-padding"  style="background-color:#222932; color: #ffffff; margin-bottom: 0;">
+      <div flex="100" layout-xs="column" layout-sm="column" layout="row" layout-align="space-around center">
+        <div flex-xs flex-gt-md="20" layout="column" layout-align="space-around center">
+          <h2 class="title">About Us</h2>
+          <ul>
+            <li class="spacer"><a href="">About us</a></li>
+            <li class="spacer"><a href="">How it works</a></li>
+            <li class="spacer"><a href="">Team</a></li>
+            <li class="spacer"><a href="">Mobile App</a></li>
+            <li class="spacer"><a href="">Desktop App</a></li>
+            <li class="spacer"><a href="">Investors</a></li>
+                                   
+          </ul>
+        </div>
+        <div flex-xs flex-gt-md="20" layout="column" layout-align="space-between center">
+          <h2 class="title">Terms and Conditions</h2>
+          <ul>
+            <li class="spacer"><a href="">About us</a></li>
+            <li class="spacer"><a href="">How it works</a></li>
+            <li class="spacer"><a href="">Team</a></li>
+            <li class="spacer"><a href="">Mobile App</a></li>
+            <li class="spacer"><a href="">Desktop App</a></li>
+            <li class="spacer"><a href="">Investors</a></li>
+          </ul>
+        </div><div flex-xs flex-gt-md="20" layout="column" layout-align="space-between center">
+          <h2 class="title" style="margin-bottom: 44px;">Contact Us</h2>
+          <ul>
+            <li class="spacer"><a href="">
+              
+              269 Main Street, London England 
+            </a></li>
+            <hr class="divider">
+            <li class="spacer"><a href="">1 800 345 67 89</a></li>
+            <hr class="divider">
+            <li class="spacer"><a href="">
+              noreply@theemon.com
+            </a></li>
+            <hr class="divider">
+          </ul>
+        </div>
+      </div>
+    
+    
+    </md-content>
+</div>
+<!--end of Footer-->
+  </div>
