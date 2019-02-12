@@ -63,7 +63,7 @@ object.readOnly = true;
 				
 				
 			  if(response.data.redirect){
-					$state.go(redirect);
+					$state.go(response.data.redirect);
 			  }
             }
           };
