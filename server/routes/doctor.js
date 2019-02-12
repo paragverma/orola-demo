@@ -472,7 +472,7 @@ app.post('/secure/save_urls', function(req, res){
         return;
 	}
     if(!req.user.activated){
-        res.json({success: false, message: 'Unactivated account'}).end();
+        res.json({success: false, message: 'Unactivated account', redirect: 'login'}).end();
         return;
     }
     file_name = "";
