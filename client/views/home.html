@@ -95,18 +95,18 @@
               
             <div flex="100" layout="row" layout-xs="column" layout-sm="column" layout-align="center center" layout-align-xs="center stretch">
               
-              <md-menu ng-repeat="item1 in [1, 2, 3, 4, 5]">
+              <md-menu ng-repeat="item1 in [ 'Radiologist', 'Gynaecologist', 'Dermatologist', 'Psychiatrist', 'Orthopediatrist' ]">
 
-              <md-button aria-label="Open menu with custom trigger" class="md-primary md-raised" ng-click="$ctrl.openMenu($mdOpenMenu, $event)" flex-xs="100">
-                  Pediatrician<md-icon>add</md-icon>
-              </md-button>
-              <md-menu-content width="4" flex="100">
-                  <md-menu-item ng-repeat="item in [1, 2, 3]">
-                  <md-button>
-                      Option {{item}}
-                  </md-button>
-                  </md-menu-item>
-              </md-menu-content>
+				  <md-button aria-label="Open menu with custom trigger" class="md-primary md-raised" ng-click="$ctrl.openMenu($mdOpenMenu, $event)" flex-xs="100">
+					  {{item1}}<md-icon>add</md-icon>
+				  </md-button>
+				  <md-menu-content width="4" flex="100">
+					  <md-menu-item ng-repeat="item in [1, 2, 3]">
+					  <md-button>
+						  Option {{item}}
+					  </md-button>
+					  </md-menu-item>
+				  </md-menu-content>
               </md-menu>
             </div>
     </md-content>
