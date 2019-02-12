@@ -1,0 +1,151 @@
+<html lang="en" ng-app="MyApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Biochemistry Lab</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/lf-ng-md-file-input.min.css">
+
+  </head>
+
+  <body layout="column" ng-controller="DemoCtrl">
+        <form name="userForm">
+    <div layout="row" layout-margin layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+    <md-content layout="column"  >
+
+        <md-table-container >
+          <md-toolbar class="md-toolbar-tools">
+            <h3>Biochemistry lab</h3>
+          </md-toolbar>
+          <table md-table md-row-select="true" ng-model="selected" md-progress="promise" style="margin:auto;">
+            <thead md-head>
+              <tr md-row>
+                <th md-column><span>Sr no.</span></th>
+                <th md-column ><span>Test</span></th>
+                <th md-column md-numeric><md-icon>create</md-icon>
+                  <span>Value</span></th>
+                <th md-column md-numeric ><span>Unit</span></th>
+                <th md-column md-numeric ><span>Range</span></th>
+
+                <th md-column >
+                  <md-icon>comments</md-icon>
+                  <span>Comments</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+             <tr md-row ng-repeat="test in DataList.data ">
+               <td md-cell style="width: 5%;">{{$index + 1}}</td>
+                <td md-cell style="width: 25%;">{{test.name}}</td>
+                <td md-cell style="width: 15%;"ng-click="editValue($event, test)" ng-class="{'md-placeholder': !test.value}">
+                  {{test.value | number: 4 }}
+                </td>
+                <td style="width: 10%;"md-cell>{{test.unit}}</td>
+                <td style="width: 20%; "md-cell>{{test.range}}</td>
+                <td md-cell ng-click="editComment($event, test)" ng-class="{'md-placeholder': !test.comment}" style="width: 25%; padding-left: 5%;">
+                  {{test.comment || 'Add a comment'}}
+                <td md-cell>
+                  <md-button class="md-icon-button" ng-click="remove(DataList.data,$index)" aria-label="Eat cake">
+                      <md-icon md-svg-src="ic_clear_black_24px.svg">
+                      </md-icon>
+                  </md-button>
+                </td>                
+              </tr>
+              <md-divider/>
+            </tbody>
+          </table>
+        </md-table-container>
+        <div flex></div>
+        <h3 layout="row" layout-align="center center">Other Tests</h3>
+        <div layout="row" layout-align="space around center" layout-xs="column" layout-sm="column">
+
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Name</label>
+          <input type="text" ng-model="name">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Value</label>
+          <input type="number" step="0.01" ng-model="value">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Unit</label>
+          <input type="text" ng-model="unit">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Range</label>
+          <input type="text" ng-model="range">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Add a comment</label>
+          <input type="text" ng-model="comment">
+        </md-input-container>
+
+        </div>
+        <div layout="row" layout-align="center center">
+          <md-button ng-click="add(DataList.data)" ng-disabled='!(name && value && unit && range)' class="md-primary md-raised md-hue-2" flex="50" >Add Other Tests</md-button>
+        </div>
+    </md-content>
+    </md-whiteframe>
+
+    </div>
+    <div layout="row" layout-margin layout-align="center center">
+        <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+            <md-content class="md-padding">
+                <h3> Others
+                </h3>
+                <md-input-container class="md-block">
+                    <label>
+        </label>
+                    <textarea name="biography" ng-model="user.biography" md-maxlength="512" rows="3" md-select-on-focus>
+        </textarea>
+                </md-input-container>
+            </md-content>
+        </md-whiteframe>
+    </div>
+    <div layout="row" layout-margin layout-align="center center" flex>
+      <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+          <md-content class="md-padding">
+              <h3> Upload images of test reports</h3>
+
+          <lf-ng-md-file-input name="files00" lf-files="files09" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*,audio/*" multiple drag preview></lf-ng-md-file-input>
+          <div ng-messages="userForm.files00.$error" style="color:red;">
+              <div ng-message="required">This is required.</div>
+              <div ng-message="maxcount">Too many files.</div>
+              <div ng-message="filesize">File size too large.</div>
+              <div ng-message="totalsize">Total size too large.</div>
+              <div ng-message="mimetype">Mimetype error.</div>
+          </div>
+          </md-content>
+      </md-whiteframe>
+    </div>
+
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js "></script>
+    <script src="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
+
+    <script src="./js/index.js "></script>
+    <script src="./js/lf-ng-md-file-input.js"></script>
+
+    </body>
+</html>

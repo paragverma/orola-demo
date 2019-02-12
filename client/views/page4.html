@@ -1,0 +1,293 @@
+    <div layout="column" ng-cloak="" class="autocompletedemoBasicUsage" ng-app="MyApp" layout-margin>
+        <h1 layout='row' layout-align="center center">
+            PEDRIATICS
+        </h1>
+    <md-button style="position:fixed; top: 100px; right: 50px;" ng-print print-element-id="printThisElement" class="md-fab md-primary md-hue-2" aria-label="Eat cake">
+            <md-icon md-svg-src="img/ic_print_white_24px.svg"></md-icon>
+    </md-button>
+
+        <form name="userForm" ng-submit="postData()">
+            <div id="printThisElement">
+            <div layout="row" layout-xs="column"  layout-sm="column" layout-margin>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Chief complaints
+                        </h3>
+                        <div layout-margin ng-repeat="complain in form.complaints track by $index">
+                            <div layout="row" layout-align="space-between start">
+                                <md-autocomplete flex="35" md-search-text-change="$ctrl.searchTextChange(complain.com)" md-search-text="complain.com" md-selected-item-change="$ctrl.selectedItemChange(item)" md-items="item in $ctrl.querySearch(complain.com)" md-item-text="item.display" md-min-length="0" placeholder="complaints">
+                                    <md-item-template>
+                                        <span md-highlight-text="complain.com" md-highlight-flags="^i">{{item.display}}
+                      </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{$ctrl.searchText}}" were found.
+                                        <a ng-click="$ctrl.newState($ctrl.searchText)">Create a new one!
+                      </a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <div>
+                                    <label> Duration(days):
+                    </label>
+                                    <input ng-readonly="readOnly" name="duration" ng-model="form.complain.duration" required style="width: 50px;">
+                                </div>
+                                <md-button class="md-icon-button" ng-click="remove(formcomplaints,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="./img/ic_clear_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(form.complaints)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="./img/ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50"  flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Patient history
+                        </h3>
+                        <div layout-margin ng-repeat="complain in form.patient_history track by $index">
+                            <div layout="row" layout-align="space-between start">
+                                <md-autocomplete flex="35" md-search-text-change="$ctrl.searchTextChange(complain.com)" md-search-text="complain.com" md-selected-item-change="$ctrl.selectedItemChange(item)" md-items="item in $ctrl.querySearch(complain.com)" md-item-text="item.display" md-min-length="0" placeholder="complaints">
+                                    <md-item-template>
+                                        <span md-highlight-text="complain.com" md-highlight-flags="^i">{{item.display}}
+                      </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{$ctrl.searchText}}" were found.
+                                        <a ng-click="$ctrl.newState($ctrl.searchText)">Create a new one!
+                      </a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <div>
+                                    <label> Duration(days):
+                    </label>
+                                    <input ng-readonly="readOnly" name="duration" ng-model="form.complain.duration" required style="width: 50px;">
+                                </div>
+                                <md-button class="md-icon-button" ng-click="remove(formpatient_history,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="./img/ic_clear_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(form.patient_history)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="./img/ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Birth History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Birth History
+                            
+                </label>
+                            <textarea ng-readonly="readOnly" required name="birth_history" ng-model="form.description.birth_history" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.birth_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Developmental History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Developmental History
+                </label>
+                            <textarea ng-readonly="readOnly" required name="developmental_history" ng-model="form.description.developmental_history" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.developmental_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Immunization History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Immunization History
+                </label>
+                            <textarea ng-readonly="readOnly" required name="immunization_history" ng-model="form.description.immunization_history" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.immunization_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Dietary History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Dietary History
+                </label>
+                            <textarea ng-readonly="readOnly" required name="dietary_history" ng-model="form.description.dietary_history" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.dietary_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+          <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                  <h3 layout="row" layout-align="center center">Anthropometry</h3>
+                  <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column" flex-sm="100" flex-xs="100">
+                       <md-input-container class="md-block" ng-repeat="(key, val) in form.anthropometry">
+                            <label> {{key}}:</label>
+                            <input ng-readonly="readOnly" name={{key}} ng-model="form.arthropometry[key]" required >
+                       </md-input-container>
+                  </div>
+                
+                </md-content>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                  <h3 layout="row" layout-align="center center">Vital signs</h3>
+                  <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column" flex-sm="100" flex-xs="100">
+                       <md-input-container class="md-block" ng-repeat="(key, val) in form.vital_signs">
+                            <label> {{key}}:</label>
+                            <input ng-readonly="readOnly" name={{key}} ng-model="form.vital_signs[key]" required >
+                       </md-input-container>
+                  </div>
+                
+                </md-content>
+            </md-whiteframe>
+
+          </div>
+          <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                  <h3 layout="row" layout-align="center center">General Personal Examination</h3>
+                    <div layout="row" layout-margin layout-align="center center" layout-xs="column" layout-sm="column" >
+                        <ul class="column column-2">
+                            <md-input-container ng-repeat="(key, val) in form.gpe">
+                                <li>
+                                <label>{{key}}</label>
+                                <input ng-readonly="readOnly" type="text" name=value ng-model="form.gpe[key]">
+                                </li>
+                            </md-input-container>
+                        </ul>
+                    </div>
+                </md-content>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                  <h3 layout="row" layout-align="center center">Systematic Examination</h3>
+                  
+                       <md-input-container class="md-block" ng-repeat="(key, val) in form.systematic_examination">
+                            <label> {{key}}:</label>
+                            <input ng-readonly="readOnly" name={{key}} ng-model="form.systematic_examination[key]" required >
+                       </md-input-container>
+                </md-content>
+            </md-whiteframe>
+          </div>
+            <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Local Examination
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Local Examination
+                </label>
+                            <textarea ng-readonly="readOnly" required name="local_examination" ng-model="form.description.local_examination" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.local_examination.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Investigation
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Investigation
+                </label>
+                            <textarea ng-readonly="readOnly" required name="investigation" ng-model="form.description.investigation" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.investigation.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+          <div layout="row" layout-margin layout-xs="column"  layout-sm="column">
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                        <h3> Provisional Diagnosis
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Provisional Diagnosis
+                </label>
+                            <textarea ng-readonly="readOnly" required name="provisional_diagnosis" ng-model="form.description.provisional_diagnosis" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.provisional_diagnosis.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+            </md-whiteframe>
+            <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                                
+              <md-content class="md-padding">
+                        <h3> Treatment
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Treatment
+                </label>
+                            <textarea ng-readonly="readOnly" required name="treatment" ng-model="form.description.treatment" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.treatment.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+            </md-whiteframe>
+
+          </div>
+          <div layout="row" layout-align="center" layout-xs="column" layout-sm="column">
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex-xs="100" flex-sm="100">Save</md-button>
+            </div>
+            </div>
+    </form>
+
+    </div>

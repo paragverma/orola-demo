@@ -1,0 +1,51 @@
+   <style>
+        .loginBox {
+          .stretch input  {
+          max-width:  90%;
+          width: 600px
+        }
+          width: 100%
+        }
+        .error {
+          padding-left:5px;
+          color: #F00;
+        }
+    </style>
+    <div layout="column" layout-align="center center" layout-fill="layout-fill">
+          <div class="loginBox md-whiteframe-15dp" layout="column">
+              <md-toolbar>
+                  <h2 class="md-toolbar-tools" layout-align="center center"><span>Welcome Back</span></h2>
+              </md-toolbar>
+              <md-content class="md-padding">
+                  <form name="userForm" layout="column" ng-submit="postData()">
+                      <md-input-container>
+                          <label>Email Address</label>
+                          <input type="email" name="email" ng-model="user.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                          <div ng-messages="userForm.email.$error" role="alert">
+                              <div ng-message="pattern">This is not a valid Email Address</div>
+                              <div ng-message="required">Please enter your Email Address</div>
+                              <div ng-message="maxlength">Email Address is too long</div>
+                          </div>
+                          <!- TODO add a required email address message ->
+                      </md-input-container>
+                      <md-input-container>
+                          <input required type="password" name="password" ng-model="user.password" minlength="8" />
+                          <label>Password</label>
+                          <div ng-messages="userForm.password.$error" role="alert">
+                              <div ng-message="required">Please enter the Password</div>
+                              <div ng-message="minlength">Password has to be 8 atleast charachters long</div>
+                          </div>
+
+                      </md-input-container>
+                      <span ng-class="error" ng-if="loginStatus.error">
+                        Invalid Username or Password
+                      </span>
+                      <div layout="row" layout-align="center center" style="padding-top:20px">
+                          <md-button type="submit" class="md-raised md-primary">Login</md-button>
+                          <md-button href="" md-no-ink="md-no-ink">Forgot Password</md-button>
+                      </div>
+                      </div>
+                  </form>
+              </md-content>
+          </div>
+        </div>

@@ -1,0 +1,48 @@
+    <div layout="column" ng-cloak="" class="autocompletedemoBasicUsage" ng-app="MyApp" layout-margin>
+    <md-button style="position:fixed; top: 100px; right: 50px;" ng-print print-element-id="printThisElement" class="md-fab md-primary md-hue-2" aria-label="Eat cake">
+            <md-icon md-svg-src="img/ic_print_white_24px.svg"></md-icon>
+    </md-button>
+
+        <form name="userForm" ng-submit="postData()">
+            <div id="printThisElement">
+            <div layout="row" layout-margin layout-align="center center" ng-repeat="(key, value) in form.systematic_examination">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <md-input-container class="md-block">
+                            <label>{{key}}
+                </label>
+                            <textarea ng-readonly="readOnly" required name="value" ng-model="form.systematic_examination[key]" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.value.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+                <div layout="row" layout-margin layout-align="center center" ng-repeat="(key, value) in form.description">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> {{key}}
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>{{key}}
+                </label>
+                            <textarea ng-readonly="readOnly" required name="input" ng-model="form.description[key]" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.input.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+        <div layout="row" layout-align="center" layout-xs="column" layout-sm="column">
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex-xs="100" flex-sm="100">Save</md-button>
+        </div>
+            </div>
+    </form>
+
+    </div>

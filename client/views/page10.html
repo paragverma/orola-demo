@@ -1,0 +1,140 @@
+    <div layout="column" ng-cloak=""  layout-margin background="/img/material-background.jpg">
+    <h1 layout='row' layout-align="center center">
+            PATHOLOGY
+        </h1>
+        <md-button style="position:fixed; top: 100px; right: 50px;" ng-print print-element-id="printThisElement" class="md-fab md-primary md-hue-2" aria-label="Eat cake">
+            <md-icon md-svg-src="img/ic_print_white_24px.svg"></md-icon>
+    </md-button>
+            <a href="javascript:window.print();">Print</a>
+        <form name="userForm" ng-submit="postData()">
+            <div id="printThisElement">
+            <div layout="column" layout-margin layout-xs="column" layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                    <h2 layout="row" layout-margin layout-align="center center">I] HEMATOLOGY</h2>
+                        <div layout="row" ng-repeat="(key, value) in form.hematology" layout-align="space-around center">
+                            
+                                <h4 style="width: 150px;" >{{key}}</h4>
+                            
+                                <md-input-container flex ng-if="key != 'DLC'">
+                                    <label>Value</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.hematology[key][0]" >
+                                </md-input-container>
+                            
+                                <md-input-container flex ng-if="key != 'DLC'">
+                                    <label>Normal Range</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.hematology[key][1]" >
+                                </md-input-container>
+
+                                <div ng-if="key == 'DLC'" layout="row" ng-repeat="(label, value) in form.hematology.DLC" layout-align="space-around center">
+                                    <div layout="column">
+                                        <h4 style="width: 150px;" >{{label}}</h4>
+                                    
+                                        <md-input-container flex>
+                                            <label>Value</label>
+                                            <input  ng-readonly="readOnly" type="text" name=value ng-model="form.hematology.DLC[label][0]" >
+                                        </md-input-container>
+                                    
+                                        <md-input-container flex>
+                                            <label>Normal Range</label>
+                                            <input  ng-readonly="readOnly" type="text" name=value ng-model="form.hematology.DLC[label][1]" >
+                                        </md-input-container>
+                                    </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </md-content> 
+                </md-whiteframe>
+
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                    <h2 layout="row" layout-margin layout-align="center center">II] SEMEN ANALYSIS</h2>
+                        <div layout="row" ng-repeat="(key, value) in form.semen_analysis" layout-align="space-around center">
+                            
+                                <h4 style="width: 150px;" >{{key}}</h4>
+                            
+                                <md-input-container flex>
+                                    <label>Value</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.semen_analysis[key][0]" >
+                                </md-input-container>
+                            
+                                <md-input-container flex>
+                                    <label>Normal Range</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.semen_analysis[key][1]" >
+                                </md-input-container>
+                            
+                        </div>
+                    </md-content> 
+                </md-whiteframe>
+
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                    <h2 layout="row" layout-margin layout-align="center center">III] FLUID</h2>
+                        <div layout="row" ng-repeat="(key, value) in form.fluid" layout-align="space-around center">
+                            
+                                <h4 style="width: 150px;" >{{key}}</h4>
+                            
+                                <md-input-container flex>
+                                    <label>Value</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.fluid[key][0]" >
+                                </md-input-container>
+                            
+                                <md-input-container flex>
+                                    <label>Normal Range</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.fluid[key][1]" >
+                                </md-input-container>
+                            
+                        </div>
+                    </md-content> 
+                </md-whiteframe>
+
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                    <h2 layout="row" layout-margin layout-align="center center">IV] URINE ANALYSIS</h2>
+                        <div layout="row" ng-repeat="(key, value) in form.urine_analysis" layout-align="space-around center">
+                            
+                                <h4 style="width: 150px;" >{{key}}</h4>
+                            
+                                <md-input-container flex>
+                                    <label>Value</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.urine_analysis[key][0]" >
+                                </md-input-container>
+                            
+                                <md-input-container flex>
+                                    <label>Normal Range</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.urine_analysis[key][1]" >
+                                </md-input-container>
+                            
+                        </div>
+                    </md-content> 
+                </md-whiteframe>
+
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                    <h2 layout="row" layout-margin layout-align="center center">V] STOOL EXAMINATION</h2>
+                        <div layout="row" ng-repeat="(key, value) in form.stool_examination" layout-align="space-around center">
+                            
+                                <h4 style="width: 150px;" >{{key}}</h4>
+                            
+                                <md-input-container flex>
+                                    <label>Value</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.stool_examination[key][0]" >
+                                </md-input-container>
+                            
+                                <md-input-container flex>
+                                    <label>Normal Range</label>
+                                    <input  ng-readonly="readOnly" type="text" name=value ng-model="form.stool_examination[key][1]" >
+                                </md-input-container>
+                            
+                        </div>
+                    </md-content> 
+                </md-whiteframe>
+
+            </div>
+            <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex="50" flex-xs="100" flex-sm="100">Save</md-button>
+            </div>
+            </div>
+        </form> 
+    </div>

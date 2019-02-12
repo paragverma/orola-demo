@@ -1,0 +1,284 @@
+  <div ng-cloak="" class="inputdemoErrors" >
+     <div layout="row" layout-margin layout-align="center center" flex="100">
+      <md-whiteframe class="md-whiteframe-10dp" flex="80" flex-sm="100" flex-xs="100" flex-md="90">
+        <md-content layout-padding="">
+          <h2 layout="row" layout-align="center center">Enter your details</h1>
+
+      <div class="alert alert-danger text-center" role="alert" ng-show="apiError">
+        <b>API Error : </b>
+        <span>{{ apiStatus }}</span>
+    </div>
+    
+    <form name="searchForm" novalidate 
+    ng-submit="search()">
+        <!--<div class="input-group">
+            <input name="place" type="text" class="form-control" 
+            ng-model="searchPlace" required autofocus />
+            <span class="input-group-btn">
+                <button class="btn btn-primary" 
+                ng-disabled="searchForm.$invalid">Search</button>
+            </span>
+        </div>-->
+        <div layout="row" layout-margin layout-align="center center" flex="100">
+        <md-input-container class="md-block" flex="75" flex-xs="100" flex-sm="100">
+              <label>Clinic Address</label>
+                <input name="place" required ng-model="searchPlace">
+                <div ng-messages="searchForm.place.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+                <!--<span class="input-group-btn">-->
+              <md-button class="md-primary md-raised md-hue-2" ng-disabled="searchForm.$invalid" type="submit">Search</md-button>
+                  
+                <!--<button class="btn btn-primary" 
+                ng-disabled="searchForm.$invalid">Search</button>
+            </span>-->
+        </md-input-container>
+        </div>
+    </form>
+        
+    <div id="map"></div>
+      
+    <!--<form name="resForm" class="form-horizontal" novalidate 
+    ng-submit="send()">
+        <div class="form-group">
+            <label for="resName" class="col-xs-2 control-label">Name</label>
+            <div class="col-xs-10">
+                <input name="resName" type="text" class="form-control" 
+                ng-model="place.name" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resLat" class="col-xs-2 control-label">Latitude</label>
+            <div class="col-xs-10">
+                <input name="resLat" type="number" class="form-control" 
+                ng-model="place.lat" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resLng" class="col-xs-2 control-label">Longitude</label>
+            <div class="col-xs-10">
+                <input name="resLng" type="number" class="form-control" 
+                ng-model="place.lng" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button class="btn btn-success" 
+                ng-disabled="resForm.$invalid">Confirm</button>
+            </div>
+        </div>
+    </form>-->
+    
+
+          <form name="myForm" ng-submit="postData()">
+      <!-- RESIDENTIAL ADDRESS -->
+            <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+            <md-input-container class="md-block" flex="75" flex-xs="100" flex-sm="100" rows="5" >
+              <label>Address (Residential)</label>
+              <textarea required name="address1" ng-model="data.home_address" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+		<!--<input md-maxlength="30" required="" name="address1" ng-model="address1">-->
+              <div ng-messages="myForm.address1.$error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+              </div>
+            </md-input-container>
+            </div>
+      <!-- /RESIDENTIAL ADDRESS -->
+  <div class="container">
+    
+      <div layout="row" layout-margin layout-align="space-between center" flex="100" layout-xs="column" layout-sm="column">
+            <div layout="column" layout-margin layout-align="space-around center" flex="100" layout-xs="column" layout-sm="column">        
+      <!--SPECIALITY-->
+          <div  style="width:75%; padding-bottom: 5%;">
+              <md-input-container flex flex-xs="100" flex-sm="100" style="width:100%;">
+                <label>Speciality</label>
+                <md-select required ng-model="data.speciality" >
+                  <md-option ng-repeat="speciality in specialities track by $index" value="{{speciality}}" >{{speciality}}</md-option>
+                </md-select>
+              </md-input-container>
+          </div>
+      <!--/SPECIALITY-->
+      <!--EXPERIENCE -->
+            <md-input-container flex flex-xs="100" flex-sm="100" style="padding-bottom: 5%;">
+              <label>Experience</label>
+              <input required name="experience" type="number" ng-model="data.experience" max="100">
+              <div ng-messages="myForm.experience.$error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="max">Invalid. Try again.</div>
+              </div>
+            </md-input-container>
+      <!--/ EXPERIENCE -->
+        <!--AGE -->
+            <md-input-container flex flex-xs="100" flex-sm="100" style="padding-bottom: 5%;">
+              <label>Age</label>
+              <input required name="age" type="number" ng-model="data.age" min="24" max="100">
+              <div ng-messages="myForm.age.$error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="min">Invalid Age.</div>
+                <div ng-message="max">Invalid Age.</div>
+              </div>
+            </md-input-container>
+      <!--/ AGE -->
+            </div>
+
+
+      <!--DOCTORS PIC-->
+          <div class="md-padding">
+              <h3> Upload photo</h3>
+
+          <lf-ng-md-file-input name="files" lf-files="files" lf-required lf-maxcount="1" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" lf-files="addRemoteFiles" lf-api="addRemoteFilesApi" drag preview></lf-ng-md-file-input>
+          <div ng-messages="myForm.files.$error" style="color:red;">
+              <div ng-message="required">This is required.</div>
+              <div ng-message="maxcount">Too many files.</div>
+              <div ng-message="filesize">File size too large.</div>
+              <div ng-message="totalsize">Total size too large.</div>
+              <div ng-message="mimetype">Mimetype error.</div>
+          </div>
+          </div>
+          <!--<lf-ng-md-file-input lf-files="files01" lf-api="api01" ng-disabled="disabled01"></lf-ng-md-file-input>-->
+
+          <!--/DOCTORS PIC-->
+    </div>
+    
+
+
+      <!--QUALIFICATIONS -->
+          <div>
+            <h3 layout="row" layout-align="center center">Qualifications</h2>
+            <div layout="row" layout-align="space-around center"
+            layout-xs="column" layout-sm="column" layout-xs-align="center center" layout-sm-align="center center" ng-repeat="q in data.qualifications">
+
+              <md-input-container class="md-block" flex="25" flex-xs="100" flex-sm="100">
+              <label>Degree</label>
+                <input name="degree" required ng-model="q.degree">
+                <div ng-messages="myForm.degree.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex="30" flex-xs="100" flex-sm="100">
+              <label>College Name</label>
+                <input name="college" required ng-model="q.college">
+                <div ng-messages="myForm.college.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block" flex="15" flex-xs="100" flex-sm="100">
+              <label>Year</label>
+                <input name="year" required ng-model="q.year">
+                <div ng-messages="myForm.year.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-button class="md-icon-button" ng-click="($index < 2) || remove(data.qualifications,$index)" aria-label="Eat cake">
+                  <md-icon md-svg-src="./img/ic_clear_black_24px.svg">
+                  </md-icon>
+              </md-button>
+            </div>
+            <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column" style="margin-top: 0;">
+                <md-button  ng-click="add(data.qualifications)" class="md-fab md-primary md-mini" >
+                    <md-icon md-svg-src="./img/ic_add_black_24px.svg" >
+                    </md-icon>
+                </md-button>
+            </div>
+          </div>
+          
+
+      <!--/QUALIFICATIONS -->
+
+      <!--APPOINTMENTS-->
+          <h3 layout="row" layout-align="space-around center">Clinic Appointments</h3>
+        <div layout="row" layout-align="space-around start"
+          layout-xs="column" layout-sm="column" layout-xs-align="center center" layout-sm-align="center center">
+          <md-input-container  flex-lg="40" flex-xs="100" flex-sm="100">
+            <label>Appointment Duration</label>
+            <md-select required ng-model="data.appointment_duration" name="duration">
+              <md-option ng-repeat="duration in durations" value="{{duration}}" >{{duration}}</md-option>
+            </md-select>
+            <div ng-messages="myForm.duration.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block"  flex-xs="100" flex-sm="100">
+            <label>Consultation fees</label>
+            <input required="" name="fees" ng-model="data.fees">
+            <div ng-messages="myForm.fees.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout="column" layout-align="center center" flex-xs="100" flex-sm="100">
+          <a><md-button class="md-primary md-raised md-hue-2" ng-click="ShowHide()" >Edit/Upload clinic images</md-button></a>
+          <lf-ng-md-file-input  ng-show = "IsVisible" name="image_files" lf-files="image_files" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" lf-files="addRemoteFilesClinic" lf-api="addRemoteFilesApiClinic" multiple drag preview></lf-ng-md-file-input>
+          <div ng-messages="myForm.image_files.$error" style="color:red;">
+              <div ng-message="maxcount">Too many files.</div>
+              <div ng-message="filesize">File size too large.</div>
+              <div ng-message="totalsize">Total size too large.</div>
+              <div ng-message="mimetype">Mimetype error.</div>
+          </div>
+          </div>
+
+        <div layout="column" layout-align="center center" flex-xs="100" flex-sm="100">        
+        <div layout="column" layout-align="center center" flex-xs="100" flex-sm="100">
+          <h5>Working Days</h5>
+          <div layout="row" layout-align="space-around center"
+          layout-xs="column" layout-sm="column" layout-xs-align="center center" layout-sm-align="center center">
+          <md-input-container>
+            <md-checkbox ng-required="true" name="wd" ng-model="element.value" aria-label="Checkbox 1" ng-repeat="element in data.working_days ">
+            {{element.label}}
+            </md-checkbox>
+            <div ng-messages="myForm.wd.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          </div>
+        </div>
+
+          <h5 layout="row" layout-align="center center">Working Hours</h5>
+
+          <div layout="row" layout-align="space-around start"
+          layout-xs="column" layout-sm="column" layout-xs-align="center center" layout-sm-align="center center"
+           ng-repeat="wh in data.working_hours">
+
+            <md-input-container flex="80" flex-xs="100" flex-sm="100">
+              <label>Start Time</label>
+              <md-select required ng-model="wh.start_time" name="st">
+                <md-option ng-repeat="start_time in timings track by $index" value="{{start_time}}" ng-click="getId($index)">{{start_time}}</md-option>
+              </md-select>
+              <div ng-messages="myForm.st.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+            </md-input-container>
+            <md-input-container flex="80" flex-xs="100" flex-sm="100">
+              <label>End Time</label>
+              <md-select required ng-model="wh.end_time" name="et">
+                <md-option ng-repeat="end_time in timings track by $index" value="{{end_time}}" ng-click="getId($index)">{{end_time}}</md-option>
+              </md-select>
+              <div ng-messages="myForm.et.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+            </md-input-container>
+              <md-button class="md-icon-button" ng-click=" ($index == 0) || remove(data.working_hours,$index)" aria-label="Eat cake">
+                <md-icon md-svg-src="./img/ic_clear_black_24px.svg">
+                </md-icon>
+              </md-button>
+          </div>
+          <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+              <md-button  ng-click="add(data.working_hours)" class="md-fab md-primary md-mini" >
+                  <md-icon md-svg-src="./img/ic_add_black_24px.svg" >
+                  </md-icon>
+              </md-button>
+          </div>
+<!--/APPOINTMENTS-->
+            <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex="50" flex-xs="100" flex-sm="100">Submit</md-button>
+            </div>
+          </form>
+
+        </md-content>
+      </md-whiteframe>
+     </div>
+        </div>
+</div>
+

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Validations</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  
+  <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <md-content ng-controller="DemoCtrl as ctrl" layout-padding="" ng-cloak="" ng-app="MyApp">
+  <h1 layout='row' layout-align="center center">
+            OBGYN
+        </h1>
+  <div layout-gt-xs="row">
+    <form name="userForm" flex-gt-xs="">
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Chief complaints
+                        </h3>
+                        <div layout-margin ng-repeat="complain in complaints track by $index">
+                            <div layout="row" layout-align="space-between start">
+                                <md-autocomplete flex="35" md-search-text-change="ctrl.searchTextChange(complain.com)" md-search-text="complain.com" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(complain.com)" md-item-text="item.display" md-min-length="0" placeholder="complaints">
+                                    <md-item-template>
+                                        <span md-highlight-text="complain.com" md-highlight-flags="^i">{{item.display}}
+                      </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{ctrl.searchText}}" were found.
+                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!
+                      </a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <div>
+                                    <label> Duration(days):
+                    </label>
+                                    <input name="duration" ng-model="complain.duration" required style="width: 50px;">
+                                </div>
+                                <md-button class="md-icon-button" ng-click="remove(complaints,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="ic_remove_circle_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(complaints)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50"  flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Associated Complaints
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Associated Complaints
+                </label>
+                            <textarea required name="associated_complaints" ng-model="description.associated_complaints" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.associated_complaints.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <div layout="row" layout-margin layout-xs="column" layout-sm="column" layout-align="center center">
+                        <md-input-container flex="50">
+                        <label>LMP</label>
+                        <md-datepicker ng-model="menstrual_history.lmp" name="lmp" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                        <div ng-messages="userForm.lmp.$error">
+                            <div ng-message="valid">The entered value is not a date!</div>
+                            <div ng-message="required">This date is required!</div>
+                            <div ng-message="mindate">Date is too early!</div>
+                            <div ng-message="maxdate">Date is too late!</div>
+                        </div>
+                        </md-input-container>
+
+                        <md-input-container flex="50">
+                        <label>EDD by (D)</label>
+                        <md-datepicker ng-model="menstrual_history.edd" name="dateField" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+                        <div ng-messages="userForm.dateField.$error">
+                            <div ng-message="valid">The entered value is not a date!</div>
+                            <div ng-message="required">This date is required!</div>
+                            <div ng-message="mindate">Date is too early!</div>
+                            <div ng-message="maxdate">Date is too late!</div>
+                        </div>
+                        </md-input-container>
+                        </div>
+
+                        <h3 layout="row" layout-align="center center">EDD by USG</h3>
+                        <div layout="row" layout-margin layout-xs="column" layout-sm="column">
+                        <md-input-container flex="50" flex-sm="75" flex-xs="75">
+                        <label>I</label>
+                        <input type="text">
+                        </md-input-container>
+                        <md-input-container flex="50" flex-sm="75" flex-xs="75">
+                        <label>II</label>
+                        <input type="text">
+                        </md-input-container>
+                        </div>
+                        <div layout="row" layout-margin layout-xs="column" layout-sm="column">
+                        <md-input-container flex="50" flex-sm="75" flex-xs="75">
+                        <label>III</label>
+                        <input type="text">
+                        </md-input-container>
+                        <md-input-container flex="50" flex-sm="75" flex-xs="75">
+                        <label>IV</label>
+                        <input type="text">
+                        </md-input-container>
+                        </div>
+
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-wireframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <h2 layout="row" layout-align="center center">Past menstrual history</h2>
+                    <md-content class="md-padding">
+                        <h3>Obstetric H/O:-</h3>
+                        <div layout="row" layout-align="center center" ng-repeat="element in menstrual_history.obstetric" >
+                            <md-input-container flex="70">
+                                <label>{{element.label}}</label>
+                                <input type="text" ng-model="element.value">
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </md-wireframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Past Medical History
+                        </h3>
+                        <div layout-margin ng-repeat="medical_history in past_medical_history track by $index">
+                            <div layout="row" layout-align="space-between start">
+                                <md-autocomplete flex="75" md-search-text-change="ctrl.searchTextChange(medical_history.name)" md-search-text="medical_history.name" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(medical_history.name)" md-item-text="item.display" md-min-length="0" placeholder="past medical history">
+                                    <md-item-template>
+                                        <span md-highlight-text="medical_history.name" md-highlight-flags="^i">{{item.display}}
+                      </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{ctrl.searchText}}" were found.
+                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!
+                      </a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <md-button class="md-icon-button" ng-click="remove(past_medical_history,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="ic_remove_circle_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(past_medical_history)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Past Surgical History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Past Surgical History
+                </label>
+                            <textarea required name="surgical_history" ng-model="description.surgical_history" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.surgical_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Family History
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Family History
+                </label>
+                            <textarea required name="family_history" ng-model="description.family_history" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.family_history.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Personal history
+                        </h3>
+                        <div layout="row" layout-align="space-around center" layout-xs="column" layout-align-xs="center center">
+                            <div ng-repeat="radiogroup in personal_history">
+                                <h5>{{radiogroup.heading}}</h5>
+                                <md-radio-group ng-model="radiogroup.value">
+                                    <md-radio-button ng-repeat="radiobutton in radiogroup.values" required class="md-primary" ng-value="radiobutton.value">
+                                        <label ng-if="!radiobutton.img">{{radiobutton.content}}</label>
+                                        <md-icon ng-if="radiobutton.img" md-svg-icon="{{radiobutton.content}}" />
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding ">
+                        <h3> General examination
+                        </h3>
+                        <div layout="row " layout-align="space-around center" layout-xs="column" layout-align-xs="center center">
+                            <div ng-repeat="radiogroup in general_examination.radiogroup">
+                                <h5>{{radiogroup.heading}}</h5>
+                                <md-radio-group ng-model="radiogroup.value">
+                                    <md-radio-button ng-repeat="radiobutton in radiogroup.values" required class="md-primary" ng-value="radiobutton.value">
+                                        <label>{{radiobutton.content}}</label>
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div ng-repeat="input in general_examination.input">
+                            <div ng-if="$index % 4 == 0" layout="row" layout-align="space-around center" layout-xs="column" layout-align-xs="center center">
+                                <md-input-container ng-if="general_examination.input[$index].label != null">
+                                    <label>{{general_examination.input[$index].label}}</label>
+                                    <input ng-model="general_examination.input[$index].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 1].label != null">
+                                    <label>{{general_examination.input[$index + 1].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 1].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 2].label != null">
+                                    <label>{{general_examination.input[$index + 2].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 2].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 3].label != null">
+                                    <label>{{general_examination.input[$index + 3].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 3].value">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+    </form>
+  </div>
+  </md-content>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+    <div layout="column" ng-cloak=""  layout-margin background="/img/material-background.jpg">
+    <h1 layout='row' layout-align="center center">
+            RADIOLOGY
+        </h1>
+    <md-button style="position:fixed; top: 100px; right: 50px;" ng-print print-element-id="printThisElement" class="md-fab md-primary md-hue-2" aria-label="Eat cake">
+            <md-icon md-svg-src="img/ic_print_white_24px.svg"></md-icon>
+    </md-button>
+        <form name="userForm" ng-submit="postData()">
+            <div id="printThisElement">
+            <div layout="row" layout-margin layout-align="center center" >
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Test name
+                        </h3>
+                        <md-input-container style="width: 100%;">
+                       <label>Test name</label>
+                        <input ng-readonly="readOnly" type="text" name="test_name" ng-model="form.test_name" >
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <!--<div layout="row" layout-margin layout-align="center center" flex>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Upload images of test reports</h3>
+
+                    <lf-ng-md-file-input name="files00" lf-files="files09" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*,audio/*" multiple drag preview></lf-ng-md-file-input>
+                    <div ng-messages="userForm.files00.$error" style="color:red;">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="maxcount">Too many files.</div>
+                        <div ng-message="filesize">File size too large.</div>
+                        <div ng-message="totalsize">Total size too large.</div>
+                        <div ng-message="mimetype">Mimetype error.</div>
+                    </div>
+                    <md-button type="button" ng-disabled="userForm.$invalid" class="md-raised md-primary" ng-click="api09.removeAll()">Submit</md-button>
+                    </md-content>
+                </md-whiteframe>
+                </div>-->
+            <div layout="row" layout-margin layout-align="center center" flex>
+      <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+          <md-content class="md-padding">
+              <h3> Upload images of test reports</h3>
+
+          <lf-ng-md-file-input  ng-readonly="readOnly" name="files" lf-files="files" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" lf-files="addRemoteFiles" lf-api="addRemoteFilesApi" multiple drag preview></lf-ng-md-file-input>
+          <div ng-messages="userForm.files.$error" style="color:red;">
+              <div ng-message="required">This is required.</div>
+              <div ng-message="maxcount">Too many files.</div>
+              <div ng-message="filesize">File size too large.</div>
+              <div ng-message="totalsize">Total size too large.</div>
+              <div ng-message="mimetype">Mimetype error.</div>
+              </div>
+          </md-content>
+      </md-whiteframe>
+    </div>
+                
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Description                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Description
+                </label>
+                            <textarea ng-readonly="readOnly" name="test_description" ng-model="form.test_description" md-maxlength="1024" rows="5" md-select-on-focus>
+                </textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+           <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Special Comments
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Special Comments</label>
+                            <textarea ng-readonly="readOnly" tname="comments" ng-model="form.comments" md-maxlength="1024" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column">            
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex="50" flex-xs="100" flex-sm="100">Save</md-button>
+            </div>
+            </div>
+    </form> 
+    </div>

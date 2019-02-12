@@ -1,0 +1,97 @@
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Radiology
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+    <!--<link rel="stylesheet" href="./css/styles.css">-->
+    <link rel="stylesheet" href="./css/lf-ng-md-file-input.min.css">
+
+
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak="" ng-app="MyApp" layout-margin>
+        <form name="userForm">
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Test name
+                        </h3>
+                        <md-input-container style="width: 100%;">
+                       <label>Test name</label>
+                        <input type="text" name="test_name" ng-model="test_name" >
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center" flex>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Upload images of test reports</h3>
+
+                    <lf-ng-md-file-input name="files00" lf-files="files09" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*,audio/*" multiple drag preview></lf-ng-md-file-input>
+                    <div ng-messages="userForm.files00.$error" style="color:red;">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="maxcount">Too many files.</div>
+                        <div ng-message="filesize">File size too large.</div>
+                        <div ng-message="totalsize">Total size too large.</div>
+                        <div ng-message="mimetype">Mimetype error.</div>
+                    </div>
+                   <!-- <md-button type="button" ng-disabled="userForm.$invalid" class="md-raised md-primary" ng-click="api09.removeAll()">Submit</md-button>-->
+                    </md-content>
+                </md-whiteframe>
+                </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Description                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Description
+                </label>
+                            <textarea name="test_description" ng-model="user.test_description" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+           <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+                    <md-content class="md-padding">
+                        <h3> Special Comments
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Special Comments
+                </label>
+                            <textarea name="comments" ng-model="user.comments" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+    </form>
+ 
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js "></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+
+    <script src="./js/lf-ng-md-file-input.js"></script>
+    <script src="js/index.js ">
+    </script>
+</body>
+
+</html>

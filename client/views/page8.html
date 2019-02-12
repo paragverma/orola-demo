@@ -1,0 +1,148 @@
+  <div layout="column"  layout-margin>
+        <md-button style="position:fixed; top: 100px; right: 50px;" ng-print print-element-id="printThisElement" class="md-fab md-primary md-hue-2" aria-label="Eat cake">
+            <md-icon md-svg-src="img/ic_print_white_24px.svg"></md-icon>
+    </md-button>
+
+        <form name="userForm" ng-submit="postData()">
+          <div id="printThisElement">
+    <div layout="row" layout-margin layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+    <md-content layout="column"  >
+
+        <md-table-container >
+          <md-toolbar class="md-toolbar-tools">
+            <h3>Biochemistry lab</h3>
+          </md-toolbar>
+          <table md-table md-row-select="true" ng-model="selected" md-progress="promise" style="margin:auto;">
+            <thead md-head>
+              <tr md-row>
+                <th md-column><span>Sr no.</span></th>
+                <th md-column ><span>Test</span></th>
+                <th md-column md-numeric><md-icon>create</md-icon>
+                  <span>Value</span></th>
+                <th md-column md-numeric ><span>Unit</span></th>
+                <th md-column md-numeric ><span>Range</span></th>
+
+                <th md-column >
+                  <md-icon>comments</md-icon>
+                  <span>Comments</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+             <!--<tr md-row ng-repeat="test in DataList.data ">
+               <td md-cell style="width: 5%;">{{$index + 1}}</td>
+                <td md-cell style="width: 25%;">{{test.name}}</td>
+                <td md-cell style="width: 15%;"ng-click="editValue($event, test)" ng-class="{'md-placeholder': !test.value}">
+                  {{test.value | number: 4 }}
+                </td>
+                <td style="width: 10%;"md-cell>{{test.unit}}</td>
+                <td style="width: 20%; "md-cell>{{test.range}}</td>
+                <td md-cell ng-click="editComment($event, test)" ng-class="{'md-placeholder': !test.comment}" style="width: 25%; padding-left: 5%;">
+                  {{test.comment || 'Add a comment'}}
+                <td md-cell>
+                  <md-button class="md-icon-button" ng-click="remove(DataList.data,$index)" aria-label="Eat cake">
+                      <md-icon md-svg-src="ic_clear_black_24px.svg">
+                      </md-icon>
+                  </md-button>
+                </td>                
+              </tr>-->
+              <tr md-row ng-repeat="(key, value) in form.DataList ">
+               <td md-cell style="width: 5%;">{{$index + 1}}</td>
+                <td md-cell style="width: 25%;">{{key}}</td>
+                <td md-cell style="width: 15%;" ng-click="editValue($event, key)" ng-class="{'md-placeholder': !form.DataList[key][0]}">{{ form.DataList[key][0] | number: 4 }}</td>
+                <!--<td md-cell style="width: 15%;"ng-click="editValue($event, test)" ng-class="{'md-placeholder': !test.value}">
+                  {{test.value | number: 4 }}
+                </td>-->
+                <td style="width: 10%;"md-cell>{{form.DataList[key][1]}}</td>
+                <td style="width: 20%; "md-cell>{{form.DataList[key][2]}}</td>
+                <td md-cell ng-click="editComment($event, key)" ng-class="{'md-placeholder': !form.DataList[key][3]}">{{ form.DataList[key][3] || 'Add a comment'}}</td>                
+                <!--<td md-cell ng-click="editComment($event, test)" ng-class="{'md-placeholder': !test.comment}" style="width: 25%; padding-left: 5%;">
+                  {{test.comment || 'Add a comment'}}
+                <td md-cell>-->
+                  <md-button class="md-icon-button" ng-click="remove(form.DataList,$index)" aria-label="Eat cake">
+                      <md-icon md-svg-src="ic_clear_black_24px.svg">
+                      </md-icon>
+                  </md-button>
+                </td>                
+              </tr>
+              <md-divider/>
+            </tbody>
+          </table>
+        </md-table-container>
+        <div flex></div>
+        <h3 layout="row" layout-align="center center">Other Tests</h3>
+        <div layout="row" layout-align="space around center" layout-xs="column" layout-sm="column">
+
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Name</label>
+          <input ng-readonly="readOnly" type="text" ng-model="data">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Value</label>
+          <input ng-readonly="readOnly" type="number" step="0.01" ng-model="value">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Unit</label>
+          <input ng-readonly="readOnly" type="text" ng-model="unit">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Range</label>
+          <input ng-readonly="readOnly" type="text" ng-model="range">
+        </md-input-container>
+        
+        <md-input-container flex="15" flex-xs="75" flex-sm="75">
+          <label>Add a comment</label>
+          <input ng-readonly="readOnly" type="text" ng-model="comment">
+        </md-input-container>
+
+        </div>
+        <div layout="row" layout-align="center center">
+          <md-button ng-click="add(DataList.data)" ng-disabled='!(name && value && unit && range)' class="md-primary md-raised md-hue-2" flex="50" >Add Other Tests</md-button>
+        </div>
+    </md-content>
+    </md-whiteframe>
+
+    </div>
+    <div layout="row" layout-margin layout-align="center center">
+        <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+            <md-content class="md-padding">
+                <h3> Others
+                </h3>
+                <md-input-container class="md-block">
+                    <label>
+        </label>
+                    <textarea ng-readonly="readOnly" name="others" ng-model="form.others" md-maxlength="1024" rows="5" md-select-on-focus>
+        </textarea>
+                </md-input-container>
+            </md-content>
+        </md-whiteframe>
+    </div>
+    <div layout="row" layout-margin layout-align="center center" flex>
+      <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="90">
+          <md-content class="md-padding">
+              <h3> Upload images of test reports</h3>
+
+          <lf-ng-md-file-input name="files" lf-files="files" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*,audio/*" lf-files="addRemoteFiles" lf-api="addRemoteFilesApi" multiple drag preview></lf-ng-md-file-input>
+          <div ng-messages="userForm.files.$error" style="color:red;">
+              <div ng-message="required">This is required.</div>
+              <div ng-message="maxcount">Too many files.</div>
+              <div ng-message="filesize">File size too large.</div>
+              <div ng-message="totalsize">Total size too large.</div>
+              <div ng-message="mimetype">Mimetype error.</div>
+          </div>
+          </md-content>
+      </md-whiteframe>
+    </div>
+    
+<!--<lf-ng-md-file-input lf-files="addRemoteFiles" lf-api="addRemoteFilesApi" preview drag multiple></lf-ng-md-file-input>-->
+    <div layout="row" layout-align="center" layout-xs="column" layout-sm="column">
+              <md-button class="md-primary md-raised md-hue-2" type="submit" flex-xs="100" flex-sm="100">Save</md-button>
+        </div>
+        </div>
+        </div>
+    </form>
+    </div>

@@ -1,0 +1,69 @@
+   <style>
+    </style>
+
+   <div layout="column" layout-align="center center" layout-fill="layout-fill">
+          <div class="md-whiteframe-15dp" layout="column">
+              <md-toolbar>
+                  <h2 class="md-toolbar-tools" layout-align="center center"><span>Register here</span></h2>
+              </md-toolbar>
+              <md-content class="md-padding">
+                  <form name="userForm" layout="column" ng-submit="postData()">
+                    <div layout="row">
+                      <md-input-container>
+                          <label>First Name</label>
+                          <input required type="text" name="firstname" ng-model="user.firstname"  />
+                          <div ng-messages="userForm.firstname.$error" role="alert">
+                              <div ng-message="required">Please enter your First Name</div>
+                          </div>
+                      </md-input-container>
+                      <md-input-container>
+                          <label>Last Name</label>
+                          <input required type="text" name="lastname" ng-model="user.lastname" />
+                          <div ng-messages="userForm.lastname.$error" role="alert">
+                              <div ng-message="required">Please enter your Name</div>
+                          </div>
+                      </md-input-container>
+                    </div>
+                      <label>Gender</label>
+                    <md-radio-group required ng-model="user.sex" layout="row" layout-align="space-around start">
+                    <md-radio-button value="M" class="md-primary">Male</md-radio-button>
+                    <md-radio-button value="F" class="md-primary">Female</md-radio-button>
+                    </md-radio-group>
+                    <md-input-container>
+                        <label>Mobile Number</label>
+                        <input required maxlength="10" minlength="10" type="phone" name="mobile" ng-model="user.mobile" />
+                        <div ng-messages="userForm.mobile.$error" role="alert">
+                            <div ng-message="required">Please enter your Mobile</div>
+                            <div ng-message="minlength">Enter a valid Mobile Number</div>
+                            <div ng-message="maxlength">Enter a valid Mobile Number</div>
+                        </div>
+                    </md-input-container>
+                      <md-input-container>
+                          <label>Email Address</label>
+                          <input type="email" name="email" ng-model="user.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                          <div ng-messages="userForm.email.$error" role="alert">
+                              <div ng-message="pattern">This is not a valid Email Address</div>
+                              <div ng-message="required">Please enter your Email Address</div>
+                              <div ng-message="maxlength">Email Address is too long</div>
+                          </div>
+                          <!- TODO add a required email address message ->
+                      </md-input-container>
+                      <md-input-container>
+                          <label>Password</label>
+                          <input required type="password" name="password" ng-model="user.password" minlength="8" />
+                          <div ng-messages="userForm.password.$error" role="alert">
+                              <div ng-message="required">Please enter the Password</div>
+                              <div ng-message="minlength">Password has to be 8 charachters long</div>
+                          </div>
+                      </md-input-container>
+                      <span ng-class="error" ng-if="signUpError">
+                        Email/Mobile already registered
+                      </span>
+                      <div layout="row" layout-align="center center" style="padding-top:20px">
+                          <md-button class="md-raised md-primary" type="submit">Signup</md-button>
+                      </div>
+                  </form>
+              </md-content>
+          </div>
+        </div>
+    </div>

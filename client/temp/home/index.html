@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Materialize slider inside Angular Material Card</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <link rel='stylesheet prefetch' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.0.9/angular-material.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  <script type="text/ng-template" id="details.html">
+  <div class="flex-main">
+
+      <md-card>
+
+        <div class="slider" ng-class="{ fullscreen : isFullScreen }" style="height: 740px;">
+        <!-- <div class="slider"> -->
+          <ul class="slides" style="height: 740px;">
+            <li ng-repeat="item in [1, 2, 3, 4]" style="height: 740px">
+              <img ng-src="http://lorempixel.com/1024/768/people/{{item}}" class="md-card-image" alt="image caption" height="700px" >
+              <!--ng-click="toggleFullScreen()" -->
+              <div class="caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </md-card>
+    </div>
+<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+
+    <script type="text/javascript">
+     $(document).ready(function() {
+      $('.slider').slider({
+        full_width: true
+      });
+    });
+    </script>
+</script>
+</head>
+
+<body  ng-app="BlankApp">
+  <div ng-controller="BlankAppCtrl" ng-cloak>
+
+  <!--<div ng-view></div>-->
+      <header>
+      <md-toolbar class="md-hue-2">
+              <div class="md-toolbar-tools">
+
+
+                  <h2 layout-align="center center"><span>Orola</span></h2>
+
+                  <span flex></span>
+                  <a ui-sref="signup" >
+                  <md-button aria-label="Signup">
+                      Signup
+                  </md-button>
+                </a>
+                <a ui-sref="login">
+                  <md-button aria-label="Login">
+                      Login
+                  </md-button>
+                </a>
+              </div>
+          </md-toolbar>
+      </header>
+
+<div class="wrapper">
+  <ng-include src="'details.html'"></ng-include>
+    <!--search inputs-->
+    <div class="overlay" layout="row" flex="50" layout-xs="column" layout-sm="column" layout-align="center center" layout-align-xs="space-around" class="overlay">
+              <md-autocomplete
+                  class="box"
+                  flex-xs="75"
+                  flex-sm="75"
+                  flex="65"
+                  ng-disabled="ctrl.isDisabled"
+                  md-no-cache="ctrl.noCache"
+                  md-selected-item="ctrl.selectedItem"
+                  md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                  md-search-text="ctrl.searchText"
+                  md-selected-item-change="ctrl.selectedItemChange(item)"
+                  md-items="item in ctrl.querySearch(ctrl.searchText)"
+                  md-item-text="item.display"
+                  md-min-length="0"
+                  placeholder="Search doctors in your city :)">
+                <md-item-template>
+                  <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{ctrl.searchText}}" were found.
+                  <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+              </md-autocomplete>
+              
+                
+                <md-autocomplete
+                  class="box"
+                  flex-xs="75"
+                  flex-sm="75"
+                  flex="65"
+                  ng-disabled="ctrl.isDisabled"
+                  md-no-cache="ctrl.noCache"
+                  md-selected-item="ctrl.selectedItem"
+                  md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                  md-search-text="ctrl.searchText"
+                  md-selected-item-change="ctrl.selectedItemChange(item)"
+                  md-items="item in ctrl.querySearch(ctrl.searchText)"
+                  md-item-text="item.display"
+                  md-min-length="0"
+                  placeholder="which location in your city :)">
+                  <md-icon>location on</md-icon>
+                <md-item-template>
+                  <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{ctrl.searchText}}" were found.
+                  <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+              </md-autocomplete>
+              <md-button class="md-icon-button md-primary" ng-click="search()">
+                  <md-icon >search</md-icon>
+              </md-button>
+              </div>
+<!--end of search inputs-->
+
+<!--fab button-->
+<div class="lock-size" layout="row" layout-align="center center" style="position: absolute; bottom: 0%; left: 5%;">
+              <md-fab-speed-dial md-open="ctrl.isOpen" 
+                                md-direction="{{ctrl.selectedDirection}}"
+                                ng-class="ctrl.selectedMode">
+                <md-fab-trigger>
+                  <md-button aria-label="menu" class="md-fab md-primary">
+                    <md-tooltip md-direction="top" md-visible="tooltipVisible">Patients Feedback</md-tooltip>
+                    <md-icon md-svg-src="feedback.svg"></md-icon>
+                  </md-button>
+                </md-fab-trigger>
+
+                <md-fab-actions>
+                  <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="twitter-box.svg" aria-label="Twitter"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="facebook-box.svg" aria-label="Facebook"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="hangouts.svg" aria-label="Google Hangout"></md-icon>
+                  </md-button>
+                </md-fab-actions>
+              </md-fab-speed-dial>
+            </div>
+<!--end of fab button-->
+          </div>
+<!--section specialities-->
+<div class="section">
+      <h2 layout="row" layout-align="center center">Specialities</h2>
+              
+            <div flex="100" layout="row" layout-xs="column" layout-sm="column" layout-align="center center" layout-align-xs="center stretch">
+              
+              <md-menu ng-repeat="item1 in [1, 2, 3, 4, 5]">
+
+              <md-button aria-label="Open menu with custom trigger" class="md-primary md-raised" ng-click="ctrl.openMenu($mdOpenMenu, $event)" flex-xs="100">
+                  Pediatrician<md-icon>add</md-icon>
+              </md-button>
+              <md-menu-content width="4" flex="100">
+                  <md-menu-item ng-repeat="item in [1, 2, 3]">
+                  <md-button>
+                      Option {{item}}
+                  </md-button>
+                  </md-menu-item>
+              </md-menu-content>
+              </md-menu>
+            </div>
+</div>
+<!--end of section specialities-->
+
+<!--section customer reviews-->
+<div class="section">
+    <span><h2 layout="row" flex="100" layout-align="center center">Reviews</h2></span>
+    <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
+
+    <div flex-xs flex-gt-md="20" flex="100" layout="row" ng-repeat="item1 in [1, 2 ,3]">
+     <md-card >
+        <md-card-header style="height:100px; width:100px; margin: auto;">
+            <md-card-avatar style="height: 100px; width: inherit;">
+               <img class="md-user-avatar" src="med-team-3.jpg">
+            </md-card-avatar>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">JOHN DOE</span>
+          </md-card-title-text>
+          
+        </md-card-title>
+        <md-card-content>
+          
+          <p>
+            <md-icon md-svg-src="ic_format_quote_black_24px.svg" class="md-primary"></md-icon>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="center center">
+          <md-card-icon-actions layout-align="center center" >
+            <md-button 
+            style="padding:0; margin:0; max-width: 22px;" 
+            class="md-icon-button" aria-label="Favorite" 
+            ng-repeat="item in [1, 2 ,3, 4, 5]"
+            ng-class="{'md-warn':hovering}"
+            
+            ng-mouseover="hovering=true"
+            ng-mouseenter="hovering=true"
+            ng-mouseleave="hovering=false">
+              <md-icon>star</md-icon>
+            </md-button>
+            
+          </md-card-icon-actions>
+        </md-card-actions>
+
+      </md-card>
+    </div>
+    </md-content>
+</div>
+
+<!--end of section customer reviews-->
+
+<!--section partners-->
+<div class="section">
+    <span><h2 layout="row" flex="100" layout-align="center center">Partnership</h2></span>
+    <md-content class="md-padding" >
+      
+      <div flex="100" layout-xs="column" layout-sm="column" layout="column" layout-align="space-between center">
+        <div flex-xs flex-gt-md="20" layout-xs="column" layout-sm="column" layout="row" layout-align="space-between center" ng-repeat="item1 in [1, 2 ,3]">
+        <md-card>
+          <img src="images.png">
+        </md-card>
+        <md-card>
+          <img src="images.png">
+        </md-card>
+        <md-card>
+          <img src="images.png">
+        </md-card>
+        </div>
+      </div>
+    
+    
+    </md-content>
+</div>
+<!--end of section partners-->
+
+<!--Footer-->
+<div >
+    
+    <md-content class="md-padding"  style="background-color:#222932; color: #ffffff; margin-bottom: 0;">
+      <div flex="100" layout-xs="column" layout-sm="column" layout="row" layout-align="space-around center">
+        <div flex-xs flex-gt-md="20" layout="column" layout-align="space-around center">
+          <h5 class="title">About Us</h5>
+          <ul>
+            <li class="spacer"><a href="">About us</a></li>
+            <li class="spacer"><a href="">How it works</a></li>
+            <li class="spacer"><a href="">Team</a></li>
+            <li class="spacer"><a href="">Mobile App</a></li>
+            <li class="spacer"><a href="">Desktop App</a></li>
+            <li class="spacer"><a href="">Investors</a></li>
+                                   
+          </ul>
+        </div>
+        <div flex-xs flex-gt-md="20" layout="column" layout-align="space-between center">
+          <h5 class="title">Terms and Conditions</h5>
+          <ul>
+            <li class="spacer"><a href="">About us</a></li>
+            <li class="spacer"><a href="">How it works</a></li>
+            <li class="spacer"><a href="">Team</a></li>
+            <li class="spacer"><a href="">Mobile App</a></li>
+            <li class="spacer"><a href="">Desktop App</a></li>
+            <li class="spacer"><a href="">Investors</a></li>
+          </ul>
+        </div><div flex-xs flex-gt-md="20" layout="column" layout-align="space-between center">
+          <h5 class="title" style="margin-bottom: 44px;">Contact Us</h5>
+          <ul>
+            <li class="spacer"><a href="">
+              
+              269 Main Street, London England 
+            </a></li>
+            <hr class="divider">
+            <li class="spacer"><a href="">1 800 345 67 89</a></li>
+            <hr class="divider">
+            <li class="spacer"><a href="">
+              noreply@theemon.com
+            </a></li>
+            <hr class="divider">
+          </ul>
+        </div>
+      </div>
+    
+    
+    </md-content>
+</div>
+<!--end of Footer-->
+
+
+
+</div>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-messages.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angular_material/1.0.9/angular-material.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

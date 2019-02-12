@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Usage
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak="" class="autocompletedemoBasicUsage" ng-app="MyApp" layout-margin>
+        <form>
+            <div layout="row" layout-margin layout-xs="column" layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                        <h3> Chief Symptoms
+                        </h3>
+                        <div layout-margin ng-repeat="symptom in symptoms track by $index">
+                            <div layout="row" layout-align="space-between start" layout-xs="column">
+                                <md-autocomplete flex="35" md-search-text-change="ctrl.searchTextChange(symptom.sym)" md-search-text="symptom.sym" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(symptom.sym)" md-item-text="item.display" md-min-length="0" placeholder="Symptoms">
+                                    <md-item-template>
+                                        <span md-highlight-text="symptom.sym" md-highlight-flags="^i">{{item.display}}</span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{ctrl.searchText}}" were found.
+                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <div>
+                                    <label> Duration(days):</label>
+                                    <input name="duration" ng-model="symptom.duration" required style="width: 50px;">
+                                </div>
+                                <md-button class="md-icon-button" ng-click="remove(symptoms,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="ic_clear_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(symptoms)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                        <h3> Patient history
+                        </h3>
+                        <div layout-margin ng-repeat="symptom in patient_history track by $index">
+                            <div layout="row" layout-align="space-between start" layout-xs="column">
+                                <md-autocomplete flex="35" md-search-text-change="ctrl.searchTextChange(symptom.sym)" md-search-text="symptom.sym" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(symptom.sym)" md-item-text="item.display" md-min-length="0" placeholder="Symptoms">
+                                    <md-item-template>
+                                        <span md-highlight-text="symptom.sym" md-highlight-flags="^i">{{item.display}}
+                      </span>
+                                    </md-item-template>
+                                    <md-not-found>
+                                        No states matching "{{ctrl.searchText}}" were found.
+                                        <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!
+                      </a>
+                                    </md-not-found>
+                                </md-autocomplete>
+                                <div>
+                                    <label> Duration(days):
+                    </label>
+                                    <input name="duration" ng-model="symptom.duration" required style="width: 50px;">
+                                </div>
+                                <md-button class="md-icon-button" ng-click="remove(patient_history,$index)" aria-label="Eat cake">
+                                    <md-icon md-svg-src="ic_clear_black_24px.svg">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-divider/>
+                        <div layout="row" layout-align="center center">
+                            <md-button ng-click="add(patient_history)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                <md-icon md-svg-src="ic_add_black_24px.svg">
+                                </md-icon>
+                            </md-button>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-margin layout-xs="column" layout-sm="column">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                        <h3> Previous Treatment
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Previous treatments
+                </label>
+                            <textarea ng-model="user.biography" md-maxlength="512" rows="5" md-select-on-focus>
+                </textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                        <h3> Patient history
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Family History
+                </label>
+                            <textarea ng-model="user.biography" md-maxlength="512" rows="5" md-select-on-focus>
+                </textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="column" layout-margin>
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding">
+                        <h3> Personal history
+                        </h3>
+                        <div layout="row" layout-align="space-around center" layout-xs="column" layout-sm="column">
+                            <div ng-repeat="radiogroup in personal_history">
+                                <h5>{{radiogroup.heading}}</h5>
+                                <md-radio-group ng-model="radiogroup.value">
+                                    <md-radio-button ng-repeat="radiobutton in radiogroup.values" required class="md-primary" ng-value="radiobutton.value">
+                                        <label ng-if="!radiobutton.img">{{radiobutton.content}}</label>
+                                        <md-icon ng-if="radiobutton.img" md-svg-icon="{{radiobutton.content}}" />
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="column" layout-margin>
+                <md-whiteframe class="md-whiteframe-10dp" flex-xs="100" flex-sm="100" flex-md="75">
+                    <md-content class="md-padding ">
+                        <h3> General examination
+                        </h3>
+                        <div layout="row " layout-align="space-around center"  layout-xs="column" layout-sm="column">
+                            <div ng-repeat="radiogroup in general_examination.radiogroup">
+                                <h5>{{radiogroup.heading}}</h5>
+                                <md-radio-group ng-model="radiogroup.value">
+                                    <md-radio-button ng-repeat="radiobutton in radiogroup.values" required class="md-primary" ng-value="radiobutton.value">
+                                        <label>{{radiobutton.content}}</label>
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    
+                        <div ng-repeat="input in general_examination.input">
+                            <div ng-if="$index % 4 == 0" layout="row" layout-align="space-around center" layout-xs="column" layout-sm="column">
+                                <md-input-container ng-if="general_examination.input[$index].label != null">
+                                    <label>{{general_examination.input[$index].label}}</label>
+                                    <input ng-model="general_examination.input[$index].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 1].label != null">
+                                    <label>{{general_examination.input[$index + 1].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 1].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 2].label != null">
+                                    <label>{{general_examination.input[$index + 2].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 2].value">
+                                </md-input-container>
+                                <md-input-container ng-if="general_examination.input[$index + 3].label != null">
+                                    <label>{{general_examination.input[$index + 3].label}}</label>
+                                    <input ng-model="general_examination.input[$index + 3].value">
+                                </md-input-container>
+                            </div>
+                        </div>
+            </div>
+            </md-content>
+            </md-whiteframe>
+    
+    </div>
+
+    </form>
+
+    </div>
+
+    <!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js "></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'>
+    </script>
+
+    <script src="js/index.js ">
+    </script>
+</body>
+
+</html>

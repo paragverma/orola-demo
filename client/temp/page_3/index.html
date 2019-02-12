@@ -1,0 +1,186 @@
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CNS
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.4/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.4/docs.css'>
+</head>
+
+<body>
+    <div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak="" class="autocompletedemoBasicUsage" ng-app="MyApp" layout-margin>
+        <form name="userForm">
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-md="90" flex-sm="100" flex-xs="100">
+                    <h2 layout="row" layout-margin layout-align="center center">CNS</h2>
+                    <md-content class="md-padding">
+                        <div layout="row" layout-margin layout-align="center center" layout-xs="column" layout-sm="column" >
+                        <div layout="column" flex="40" flex-sm="100" flex-xs="100" style="width:90%;">
+                            <md-input-container ng-repeat="element in cns.col1">
+                                <label>{{element.label}}</label>
+                                <input type="text" name=value ng-model="element.value">
+                            </md-input-container>
+                        </div>
+                        <div layout="column" flex="40" flex-sm="100" flex-xs="100" style="width:90%;">
+                            <md-input-container ng-repeat="element in cns.col2">
+                                <label>{{element.label}}</label>
+                                <input type="text" name=value ng-model="element.value" >
+                            </md-input-container>
+                        </div>
+                        </div>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-md="90" flex-sm="100" flex-xs="100" >
+                    <md-content class="md-padding">
+                        <h3> Local examination
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>Local examination
+                </label>
+                            <textarea required name="local_examination" ng-model="description.local_examination" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.local_examination.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-md="90" flex-sm="100" flex-xs="100">
+                    <md-content class="md-padding">
+                        <h3> Provisional ding...(heading..)
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>heading2
+                </label>
+                            <textarea required name="heading2" ng-model="description.heading2" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.heading2.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-md="90" flex-sm="100" flex-xs="100">
+                    <md-content class="md-padding">
+                        <h3> heading 3
+                        </h3>
+                        <md-input-container class="md-block">
+                            <label>heading 3
+                </label>
+                            <textarea required name="heading3" ng-model="description.heading3" md-maxlength="512" rows="3" md-select-on-focus>
+                </textarea>
+                          <div ng-messages="userForm.heading3.$error" role="alert">
+                              <div ng-message="required">This field is required</div>
+                          </div>
+
+                        </md-input-container>
+                    </md-content>
+                </md-whiteframe>
+            </div>
+ 
+            <div layout="row" layout-margin layout-align="center center">
+                <md-whiteframe class="md-whiteframe-10dp" flex="50" flex-md="90" flex-sm="100" flex-xs="100">
+                    <md-content class="md-padding">
+                        <div layout="row" layout-margin layout-align="center center" layout-xs="column" layout-sm="column">
+                            <div layout="column" layout-margin layout-align="center center" flex="50" flex-xs="100" flex-sm="100" >
+                                <h3> Generic Names
+                                </h3>
+                                <div layout-margin ng-repeat="name in generic_name track by $index" >
+                                    <div layout="row" layout-align="space-between start">
+                                        <md-autocomplete flex="35" flex-md="25" md-search-text-change="ctrl.searchTextChange(name.name)" md-search-text="name.name" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(name.name)" md-item-text="item.display" md-min-length="0" placeholder="generic_name">
+                                            <md-item-template>
+                                                <span md-highlight-text="name.name" md-highlight-flags="^i">{{item.display}}</span>
+                                            </md-item-template>
+                                            <md-not-found>
+                                                No states matching "{{ctrl.searchText}}" were found.
+                                                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                                            </md-not-found>
+                                        </md-autocomplete>
+                                        <md-button class="md-icon-button" ng-click="remove(generic_name,$index)" aria-label="Eat cake">
+                                            <md-icon md-svg-src="ic_remove_circle_black_24px.svg">
+                                            </md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <md-divider/>
+                                <div layout="row" layout-align="center center" flex="100" flex-md="90" flex-sm="100" flex-xs="100">
+                                    <md-button ng-click="add(generic_name)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                        <md-icon md-svg-src="ic_add_black_24px.svg">
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div layout="column" layout-margin layout-align="center center" flex="50" flex-xs="100" flex-sm="100">
+                                <h3> Brand Name
+                                </h3>
+                                <div layout-margin ng-repeat="name in brand_name track by $index">
+                                    <div layout="row" layout-align="space-between start">
+                                        <md-autocomplete flex="35" md-search-text-change="ctrl.searchTextChange(name.name)" md-search-text="name.name" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(name.name)" md-item-text="item.display" md-min-length="0" placeholder="brand_names">
+                                            <md-item-template>
+                                                <span md-highlight-text="name.name" md-highlight-flags="^i">{{item.display}}</span>
+                                            </md-item-template>
+                                            <md-not-found>
+                                                No states matching "{{ctrl.searchText}}" were found.
+                                                <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                                            </md-not-found>
+                                        </md-autocomplete>
+                                        <md-button class="md-icon-button" ng-click="remove(brand_name,$index)" aria-label="Eat cake">
+                                            <md-icon md-svg-src="ic_remove_circle_black_24px.svg">
+                                            </md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <md-divider/>
+                                <div layout="row" layout-align="center center" flex="100" flex-md="90" flex-sm="100" flex-xs="100">
+                                    <md-button ng-click="add(brand_name)" class="md-fab md-primary md-mini" aria-label="Eat cake">
+                                        <md-icon md-svg-src="ic_add_black_24px.svg">
+                                        </md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                       
+                        <br><br>
+                        
+                    <div layout="row" layout-align="center center" layout-xs="column" layout-sm="column" flex-xs="100" flex-sm="100">
+                        <div ng-repeat="element in treatment">
+                        <md-input-container  flex="95">
+                            <label>{{element.label}}</label>
+                            <input type="text" ng-model="element.value">
+                        </md-input-container>
+                        <div flex="5"></div>
+                        </div>
+                    </div>
+                </md-whiteframe>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js "></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'>
+    </script>
+
+    <script src="js/index.js ">
+    </script>
+</body>
+
+</html>
