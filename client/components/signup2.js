@@ -89,7 +89,7 @@ angular.module('app').component('signup2', {
       var successCallback=function(response) {
 		
 		console.log(response);
-		if(response.redirect){
+		if(response.data.redirect){
 			alert("Not logged in");
 			console.log("redirect hai");
 			redirect = response.data.redirect;
