@@ -87,7 +87,7 @@ var storage2 = multer.diskStorage({
 app.post('/secure/upload/clinic_images',function(req, res) {
     counter = 0;
     if(!req.user) {
-	res.json({success: false,message: "Unauthorized"}).end();
+		res.json({success: false,message: "Unauthorized", redirect: "login"}).end();
 	return;
 	}
     var i = 0
@@ -126,11 +126,17 @@ app.post('/secure/upload/clinic_images',function(req, res) {
 
 
     app.post('/secure/upload',function(req,res){
+		
         console.log('heyy')
+		
         // console.log(req)
         var file_name;
         console.log("in file upload")
         console.log(req.body);
+		if(!req.user) {
+			res.json({success: false,message: "Unauthorized", redirect: "login"}).end();
+			return;
+		}
         var form = new formidable.IncomingForm();
         form.uploadDir = path.join(__dirname +'/../../client/uploads');
         //file upload path
@@ -300,7 +306,7 @@ app.post('/secure/save_urls', function(req, res){
     app.post('/secure/doctor/signup_complete', function(req, res) {
 
 	    if(!req.user) {
-			res.json({success: false,message: "Unauthorized /s/d/s_c"}).end();
+			res.json({success: false,message: "Unauthorized", redirect: "login"}).end();
 			return;
 		}
 
@@ -462,7 +468,7 @@ app.post('/secure/save_urls', function(req, res){
 
     app.post('/secure/doctor/get_profile', function(req, res) {
     if(!req.user) {
-        res.json({success: false,message: "Unauthorized"}).end();
+        res.json({success: false,message: "Unauthorized", redirect: "login"}).end();
         return;
 	}
     if(!req.user.activated){

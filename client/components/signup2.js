@@ -87,6 +87,11 @@ angular.module('app').component('signup2', {
       }
 
       var successCallback=function(response) {
+		if(response.redirect){
+			alert("Not logged in");
+			redirect = response.data.redirect;
+			$state.go(redirect);
+		}
         redirect = response.data.redirect;
 		console.log(response);
         if(response.data.success) {
