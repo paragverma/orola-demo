@@ -300,9 +300,9 @@ app.post('/secure/save_urls', function(req, res){
     app.post('/secure/doctor/signup_complete', function(req, res) {
 
 	    if(!req.user) {
-	res.json({success: false,message: "Unauthorized"}).end();
-	return;
-	}
+			res.json({success: false,message: "Unauthorized /s/d/s_c"}).end();
+			return;
+		}
 
         console.log('in signup');
         console.log(req.user);
