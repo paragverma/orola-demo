@@ -56,6 +56,15 @@ object.readOnly = true;
             }
             else {
               $log.log('Unauthorized access');
+			  if(response.data.redirect == "login"){
+					alert("Please Log In");
+					console.log("redirect hai");
+			  }
+				
+				
+			  if(response.data.redirect){
+					$state.go(redirect);
+			  }
             }
           };
        var errorCallback = function(response) {
