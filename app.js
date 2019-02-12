@@ -48,6 +48,11 @@ app.get('*', function(req, res) {
 });
 
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-});
+app.listen(80, function (err) {
+  if(err){
+	  console.log("Could not start server at port 80");
+  }
+  else{
+	  console.log('Example app listening on port 80!');
+  }
+})
