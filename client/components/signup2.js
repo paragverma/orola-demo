@@ -87,20 +87,26 @@ angular.module('app').component('signup2', {
       }
 
       var successCallback=function(response) {
+		
+		console.log(response);
 		if(response.redirect){
 			alert("Not logged in");
+			console.log("redirect hai");
 			redirect = response.data.redirect;
 			$state.go(redirect);
 		}
-        redirect = response.data.redirect;
-		console.log(response);
-        if(response.data.success) {
-          $log.log('redirect ' + redirect);
-          alert("You have successfully Signed Up !!");
-          $log.log(response.data);
-          $state.go(redirect);
-        }
-        else { }
+		
+        
+		else{
+			redirect = response.data.redirect;
+			if(response.data.success) {
+			  $log.log('redirect ' + redirect);
+			  alert("You have successfully Signed Up !!");
+			  $log.log(response.data);
+			  $state.go(redirect);
+			}
+		}
+        
       };
 
       var errorCallback = function(response) {
