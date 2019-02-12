@@ -41,6 +41,7 @@ object.readOnly = true;
     };
     var profile = {};
     var successCallback=function(response) {
+			console.log(response);
             if(response.data.success) {
               profile = response.data.profile;
               console.log(profile);
@@ -55,7 +56,7 @@ object.readOnly = true;
               $scope.doctor_type = profile.speciality;                            
             }
             else {
-              $log.log('Unauthorized access');
+              $log.log('Success is set to false');
 			  if(response.data.redirect == "login"){
 					alert("Please Log In");
 					console.log("redirect hai");
