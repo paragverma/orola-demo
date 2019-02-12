@@ -88,6 +88,7 @@ angular.module('app').component('signup2', {
 
       var successCallback=function(response) {
         redirect = response.data.redirect;
+		console.log(response);
         if(response.data.success) {
           $log.log('redirect ' + redirect);
           alert("You have successfully Signed Up !!");
