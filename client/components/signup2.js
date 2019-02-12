@@ -89,22 +89,18 @@ angular.module('app').component('signup2', {
       var successCallback=function(response) {
 		
 		console.log(response);
-		if(response.data.redirect){
+		redirect = response.data.redirect;
+		if(response.data.redirect == "login"){
 			alert("Not logged in");
 			console.log("redirect hai");
-			redirect = response.data.redirect;
-			$state.go(redirect);
 		}
 		
         
+		if(response.data.success){
+			$state.go(redirect);
+		}
 		else{
-			redirect = response.data.redirect;
-			if(response.data.success) {
-			  $log.log('redirect ' + redirect);
-			  alert("You have successfully Signed Up !!");
-			  $log.log(response.data);
-			  $state.go(redirect);
-			}
+			alert("An error occurred(key=success, val=false");
 		}
         
       };
